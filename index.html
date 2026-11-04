@@ -39,10 +39,10 @@ a{color:inherit}
 /* the six themes fanned out like a product line-up, overlapping into the white area below;
    each shot is 36% of the row and steps 12.8%, so six of them fill the row exactly */
 .fan{position:relative;z-index:1;display:flex;justify-content:center;width:min(940px,calc(100vw - 480px));margin:6vh auto 0;perspective:1800px}
-.fan a{flex:none;width:36%;margin-left:-23.2%;transform:rotateY(-24deg);transform-origin:left center;
+.fan .card{flex:none;width:36%;margin-left:-23.2%;transform:rotateY(-24deg);transform-origin:left center;
   border-radius:6px;overflow:hidden;box-shadow:-14px 24px 40px rgba(0,15,40,.4),0 0 0 1px rgba(255,255,255,.12);transition:transform .35s}
-.fan a:first-child{margin-left:0}
-.fan a:hover{transform:rotateY(-24deg) translateY(-10px)}
+.fan .card:first-child{margin-left:0}
+.fan .card:hover{transform:rotateY(-24deg) translateY(-10px)}
 .fan img{display:block;width:100%;height:auto}
 .fan-cap{text-align:center;margin:0;padding-top:56px;font:500 11px var(--f-label);letter-spacing:.3em;color:rgba(255,255,255,.75)}
 .fan-cap b{font-weight:500;color:#f3c9a1}
@@ -161,7 +161,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   nav.side a,nav.side a.dark{color:var(--ink);text-shadow:none;font-size:14px}
   .hero{padding-top:110px}
   .fan{width:calc(100vw - 32px)}
-  .fan a{border-radius:3px}
+  .fan .card{border-radius:3px}
   .fan-cap{padding-top:40px;letter-spacing:.18em}
   .hero .feat{max-width:none;padding:0 20px 90px !important}
   .hero-copy p:last-child{font-size:12px;letter-spacing:.02em}
@@ -214,12 +214,12 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
     <p><span class="ja">No-Intro DAT 対応のリネーム機能<br>RetroArch と同じ libretro コアを内蔵<br>Windows 用オールインワンエミュレーターランチャー</span><span class="en">Renaming with No-Intro DATs<br>Built-in libretro cores, the same as RetroArch<br>An all-in-one emulator launcher for Windows</span></p>
   </div>
   <div class="fan">
-    <a href="img/theme-light.jpg" target="_blank" rel="noopener"><img src="img/theme-light.jpg" width="960" height="600" alt="ライトテーマのメイン画面"></a>
-    <a href="img/theme-dark.jpg" target="_blank" rel="noopener"><img src="img/theme-dark.jpg" width="960" height="600" alt="ダークテーマのメイン画面"></a>
-    <a href="img/theme-aqua.jpg" target="_blank" rel="noopener"><img src="img/theme-aqua.jpg" width="960" height="600" alt="アクアテーマのメイン画面"></a>
-    <a href="img/theme-metal.jpg" target="_blank" rel="noopener"><img src="img/theme-metal.jpg" width="960" height="600" alt="メタルテーマのメイン画面"></a>
-    <a href="img/theme-pink.jpg" target="_blank" rel="noopener"><img src="img/theme-pink.jpg" width="960" height="600" alt="ピンクテーマのメイン画面"></a>
-    <a href="img/theme-chic.jpg" target="_blank" rel="noopener"><img src="img/theme-chic.jpg" width="960" height="600" alt="シックテーマのメイン画面"></a>
+    <div class="card"><img src="img/theme-light.jpg" width="960" height="600" alt="ライトテーマのメイン画面"></div>
+    <div class="card"><img src="img/theme-dark.jpg" width="960" height="600" alt="ダークテーマのメイン画面"></div>
+    <div class="card"><img src="img/theme-aqua.jpg" width="960" height="600" alt="アクアテーマのメイン画面"></div>
+    <div class="card"><img src="img/theme-metal.jpg" width="960" height="600" alt="メタルテーマのメイン画面"></div>
+    <div class="card"><img src="img/theme-pink.jpg" width="960" height="600" alt="ピンクテーマのメイン画面"></div>
+    <div class="card"><img src="img/theme-chic.jpg" width="960" height="600" alt="シックテーマのメイン画面"></div>
   </div>
   <p class="fan-cap"><b>6 THEMES</b> — LIGHT · DARK · AQUA · METAL · PINK · CHIC</p>
   <ul class="feat">
