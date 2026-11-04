@@ -37,7 +37,7 @@ a{color:inherit}
 .hero-title h1{margin:10px 0 0;font:300 clamp(40px,6.4vw,76px)/1.1 var(--f-serif);letter-spacing:.14em;padding-left:.14em}
 
 /* the app's TV-style preview as the centerpiece */
-.tv{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);width:min(46vw,520px);z-index:1;
+.tv{position:absolute;left:50%;top:auto;bottom:9vh;transform:translateX(-50%);width:min(30vw,44vh,400px);z-index:1;
   filter:drop-shadow(0 30px 50px rgba(0,10,30,.55))}
 .tv .body{background:#141518;border-radius:14px;padding:12px 12px 0;border:1px solid #2a2c31}
 .tv .scr{aspect-ratio:4/3;background:#000;border-radius:3px;display:grid;grid-template-rows:repeat(4,1fr);gap:8px;padding:12px 0;overflow:hidden}
@@ -52,7 +52,8 @@ a{color:inherit}
 
 .emblem{position:fixed;top:28px;left:34px;z-index:30;width:72px;height:72px;border-radius:50%;
   border:1px solid currentColor;display:grid;place-items:center;text-decoration:none;
-  font:italic 400 17px/1 var(--f-serif);color:var(--copper);text-align:center;transition:color .3s}
+  font:italic 400 17px/1 var(--f-serif);color:#fff;text-align:center;transition:color .3s}
+body.past .emblem{color:var(--copper)}
 .emblem span{display:block;font:400 7px var(--f-label);letter-spacing:.25em;margin-top:4px;font-style:normal}
 
 /* left menu */
@@ -160,7 +161,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   body.open .menu-btn{color:var(--ink)}
   nav.side ul{gap:14px;text-align:center}
   nav.side a,body.past nav.side a{color:var(--ink);text-shadow:none;font-size:14px}
-  .tv{width:min(78vw,420px);top:60%}
+  .tv{width:min(72vw,44vh,360px);bottom:12vh}
   .feat{grid-template-columns:1fr;gap:32px}
   .shots{grid-template-columns:1fr}
   .tiers{grid-template-columns:repeat(2,1fr)}
