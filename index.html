@@ -36,10 +36,16 @@ a{color:inherit}
 .hero-copy .big{margin:0;font:400 clamp(18px,2.1vw,24px)/1.9 var(--f-body);letter-spacing:.12em}
 .hero-copy p:last-child{margin:14px 0 0;font-size:14px;opacity:.85}
 
-/* the real main window, overlapping into the white area below */
-.hero-shot{position:relative;z-index:1;display:block;width:min(30vw,52vh,440px);margin:6vh auto -70px;
-  border-radius:8px;overflow:hidden;box-shadow:0 30px 70px rgba(0,15,40,.45),0 0 0 1px rgba(255,255,255,.08)}
-.hero-shot img{display:block;width:100%;height:auto}
+/* the six themes fanned out like a product line-up, overlapping into the white area below;
+   each shot is 36% of the row and steps 12.8%, so six of them fill the row exactly */
+.fan{position:relative;z-index:1;display:flex;justify-content:center;width:min(940px,calc(100vw - 480px));margin:6vh auto -90px;perspective:1800px}
+.fan a{flex:none;width:36%;margin-left:-23.2%;transform:rotateY(-24deg);transform-origin:left center;
+  border-radius:6px;overflow:hidden;box-shadow:-14px 24px 40px rgba(0,15,40,.4),0 0 0 1px rgba(255,255,255,.12);transition:transform .35s}
+.fan a:first-child{margin-left:0}
+.fan a:hover{transform:rotateY(-24deg) translateY(-10px)}
+.fan img{display:block;width:100%;height:auto}
+.fan-cap{text-align:center;padding-top:120px;font:500 11px var(--f-label);letter-spacing:.3em;color:var(--sub)}
+.fan-cap b{font-weight:500;color:var(--copper)}
 
 .emblem{position:fixed;top:28px;left:34px;z-index:30;width:72px;height:72px;border-radius:50%;
   border:1px solid currentColor;display:grid;place-items:center;text-decoration:none;
@@ -81,7 +87,7 @@ section.sec{max-width:880px;margin:0 auto;padding:130px 0 40px}
 .sec-head p{margin:10px 0 0;font-size:12px;letter-spacing:.3em;color:var(--copper)}
 .lead{max-width:36em;margin:0 auto 48px;text-align:center;color:var(--sub)}
 
-.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;margin:0 auto;padding-top:150px !important;padding:0;list-style:none;max-width:880px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;margin:0 auto;padding-top:64px !important;padding:0;list-style:none;max-width:880px}
 .feat li{text-align:center}
 .feat b{display:block;font:400 22px var(--f-serif);letter-spacing:.1em;color:var(--copper);margin-bottom:6px}
 .feat strong{display:block;font-weight:500;margin-bottom:6px}
@@ -150,9 +156,11 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   nav.side ul{gap:14px;text-align:center}
   nav.side a,nav.side a.dark{color:var(--ink);text-shadow:none;font-size:14px}
   .hero{padding-top:110px}
-  .hero-shot{width:min(78vw,400px);margin-bottom:-50px;border-radius:5px}
+  .fan{width:calc(100vw - 32px);margin-bottom:-50px}
+  .fan a{border-radius:3px}
+  .fan-cap{padding-top:80px;letter-spacing:.18em}
   .hero-copy p:last-child{font-size:12px;letter-spacing:.02em}
-  .feat{padding-top:110px !important}
+  .feat{padding-top:56px !important}
   .feat{grid-template-columns:1fr;gap:32px}
   .shots{grid-template-columns:1fr}
   .tiers{grid-template-columns:repeat(2,1fr)}
@@ -198,12 +206,20 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   </div>
   <div class="hero-copy">
     <p class="big"><span class="ja">手元のゲームを、正しい名前で。</span><span class="en">Your games, properly named.</span></p>
-    <p><span class="ja">No-Intro のリネーム機能<br>RetroArch の内蔵コア機能<br>オールインワン Windows 用エミュレーターランチャー</span><span class="en">No-Intro renaming<br>RetroArch built-in cores<br>An all-in-one emulator launcher for Windows</span></p>
+    <p><span class="ja">No-Intro のリネーム機能<br>RetroArch の内蔵コア機能<br>Windows 用オールインワンエミュレーターランチャー</span><span class="en">No-Intro renaming<br>RetroArch built-in cores<br>An all-in-one emulator launcher for Windows</span></p>
   </div>
-  <a class="hero-shot" href="img/aqua.jpg" target="_blank" rel="noopener"><img src="img/aqua.jpg" width="1280" height="800" alt="JPEmu Renamer のメイン画面（アクアテーマ）。ゲーム一覧と、ドンキーコングのデモが流れる自動プレビュー"></a>
+  <div class="fan">
+    <a href="img/theme-light.jpg" target="_blank" rel="noopener"><img src="img/theme-light.jpg" width="960" height="600" alt="ライトテーマのメイン画面"></a>
+    <a href="img/theme-dark.jpg" target="_blank" rel="noopener"><img src="img/theme-dark.jpg" width="960" height="600" alt="ダークテーマのメイン画面"></a>
+    <a href="img/theme-aqua.jpg" target="_blank" rel="noopener"><img src="img/theme-aqua.jpg" width="960" height="600" alt="アクアテーマのメイン画面"></a>
+    <a href="img/theme-metal.jpg" target="_blank" rel="noopener"><img src="img/theme-metal.jpg" width="960" height="600" alt="メタルテーマのメイン画面"></a>
+    <a href="img/theme-pink.jpg" target="_blank" rel="noopener"><img src="img/theme-pink.jpg" width="960" height="600" alt="ピンクテーマのメイン画面"></a>
+    <a href="img/theme-chic.jpg" target="_blank" rel="noopener"><img src="img/theme-chic.jpg" width="960" height="600" alt="シックテーマのメイン画面"></a>
+  </div>
 </header>
 
 <main>
+  <p class="fan-cap"><b>6 THEMES</b> — LIGHT · DARK · AQUA · METAL · PINK · CHIC</p>
   <ul class="feat">
     <li><b>Rename</b><strong><span class="ja">DATで正しい名前に</span><span class="en">Correct names from a DAT</span></strong><span><span class="ja">No-Intro / OfflineList のDATとCRC32で照合。実行後も「元に戻す」で戻せます。</span><span class="en">Matched by CRC32 against No-Intro / OfflineList DATs. Every run can be undone.</span></span></li>
     <li><b>Play</b><strong><span class="ja">内蔵コアですぐ遊べる</span><span class="en">Built-in cores</span></strong><span><span class="ja">libretro コアをアプリから一括ダウンロード。テレビ風の画面でデモも流れます。</span><span class="en">Download libretro cores in the app. Demos play on a TV-style preview.</span></span></li>
