@@ -38,14 +38,18 @@ a{color:inherit}
 
 /* the six themes fanned out like a product line-up, overlapping into the white area below;
    each shot is 36% of the row and steps 12.8%, so six of them fill the row exactly */
-.fan{position:relative;z-index:1;display:flex;justify-content:center;width:min(940px,calc(100vw - 480px));margin:6vh auto -90px;perspective:1800px}
+.fan{position:relative;z-index:1;display:flex;justify-content:center;width:min(940px,calc(100vw - 480px));margin:6vh auto 0;perspective:1800px}
 .fan a{flex:none;width:36%;margin-left:-23.2%;transform:rotateY(-24deg);transform-origin:left center;
   border-radius:6px;overflow:hidden;box-shadow:-14px 24px 40px rgba(0,15,40,.4),0 0 0 1px rgba(255,255,255,.12);transition:transform .35s}
 .fan a:first-child{margin-left:0}
 .fan a:hover{transform:rotateY(-24deg) translateY(-10px)}
 .fan img{display:block;width:100%;height:auto}
-.fan-cap{text-align:center;padding-top:120px;font:500 11px var(--f-label);letter-spacing:.3em;color:var(--sub)}
-.fan-cap b{font-weight:500;color:var(--copper)}
+.fan-cap{text-align:center;margin:0;padding-top:56px;font:500 11px var(--f-label);letter-spacing:.3em;color:rgba(255,255,255,.75)}
+.fan-cap b{font-weight:500;color:#f3c9a1}
+/* the feature trio sits on the blue hero too, so it uses light text */
+.hero .feat{max-width:min(880px,calc(100vw - 480px));padding-bottom:12vh !important}
+.hero .feat b{color:#f3c9a1}
+.hero .feat span{color:rgba(255,255,255,.8)}
 
 .emblem{position:fixed;top:28px;left:34px;z-index:30;width:72px;height:72px;border-radius:50%;
   border:1px solid currentColor;display:grid;place-items:center;text-decoration:none;
@@ -156,11 +160,12 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   nav.side ul{gap:14px;text-align:center}
   nav.side a,nav.side a.dark{color:var(--ink);text-shadow:none;font-size:14px}
   .hero{padding-top:110px}
-  .fan{width:calc(100vw - 32px);margin-bottom:-50px}
+  .fan{width:calc(100vw - 32px)}
   .fan a{border-radius:3px}
-  .fan-cap{padding-top:80px;letter-spacing:.18em}
+  .fan-cap{padding-top:40px;letter-spacing:.18em}
+  .hero .feat{max-width:none;padding:0 20px 90px !important}
   .hero-copy p:last-child{font-size:12px;letter-spacing:.02em}
-  .feat{padding-top:56px !important}
+  .hero .feat{padding-top:40px !important}
   .feat{grid-template-columns:1fr;gap:32px}
   .shots{grid-template-columns:1fr}
   .tiers{grid-template-columns:repeat(2,1fr)}
@@ -216,15 +221,15 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
     <a href="img/theme-pink.jpg" target="_blank" rel="noopener"><img src="img/theme-pink.jpg" width="960" height="600" alt="ピンクテーマのメイン画面"></a>
     <a href="img/theme-chic.jpg" target="_blank" rel="noopener"><img src="img/theme-chic.jpg" width="960" height="600" alt="シックテーマのメイン画面"></a>
   </div>
-</header>
-
-<main>
   <p class="fan-cap"><b>6 THEMES</b> — LIGHT · DARK · AQUA · METAL · PINK · CHIC</p>
   <ul class="feat">
     <li><b>Rename</b><strong><span class="ja">DATで正しい名前に</span><span class="en">Correct names from a DAT</span></strong><span><span class="ja">No-Intro / OfflineList のDATとCRC32で照合。実行後も「元に戻す」で戻せます。</span><span class="en">Matched by CRC32 against No-Intro / OfflineList DATs. Every run can be undone.</span></span></li>
     <li><b>Play</b><strong><span class="ja">内蔵コアですぐ遊べる</span><span class="en">Built-in cores</span></strong><span><span class="ja">libretro コアをアプリから一括ダウンロード。テレビ風の画面でデモも流れます。</span><span class="en">Download libretro cores in the app. Demos play on a TV-style preview.</span></span></li>
     <li><b>Collect</b><strong><span class="ja">コレクションを整える</span><span class="en">Tidy your collection</span></strong><span><span class="ja">国旗表示、所有リスト、一括解凍・圧縮。6テーマ・16言語に対応。</span><span class="en">Region flags, owned lists, bulk zip / unzip. 6 themes, 16 languages.</span></span></li>
   </ul>
+</header>
+
+<main>
 
   <section class="sec" id="download">
     <div class="sec-head"><h2>Download</h2><p>ダウンロード</p></div>
@@ -234,7 +239,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
       <a class="btn fill" href="https://github.com/jpemu-project/JPEmu-Renamer/releases/latest/download/JPEmuRenamer-win-x64.zip">DOWNLOAD <span class="ja">(ZIP)</span><span class="en">(ZIP)</span></a>
     </div>
     <div class="dl-card">
-      <div><h3><span class="ja">各種 DAT</span><span class="en">DAT files</span></h3><p><span class="ja">日本語タイトル・発売日・価格・ジャンル入りのDATを、ファミコンから機種ごとに順次公開します（OfflineList形式）</span><span class="en">DATs with Japanese titles, release dates, prices and genres, released system by system starting with the Famicom (OfflineList format)</span></p></div>
+      <div><h3><span class="ja">各種 DAT(日本語)</span><span class="en">DAT files (Japanese)</span></h3><p><span class="ja">日本語タイトル・発売日・価格・ジャンル入りのDATを、順次公開します ※Wikipedia名準拠（OfflineList形式）</span><span class="en">DATs with Japanese titles, release dates, prices and genres, released one by one. Titles follow Japanese Wikipedia (OfflineList format)</span></p></div>
       <a class="btn" aria-disabled="true" href="#download"><span class="ja">準備中</span><span class="en">COMING SOON</span></a>
     </div>
     <dl class="spec">
