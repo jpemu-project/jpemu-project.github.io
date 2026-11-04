@@ -142,6 +142,11 @@ ol.steps span{font-size:13px;color:var(--sub)}
 
 footer{margin-top:120px;padding:48px 24px calc(80px + env(safe-area-inset-bottom,0px));background:var(--paper2);text-align:center;font-size:12px;color:var(--sub)}
 footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);margin-bottom:10px}
+.banners{max-width:520px;margin:22px auto 26px;padding:20px 20px 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.banner-imgs{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap}
+.banner-imgs img{display:block}
+.banners p{margin:12px 0 10px;line-height:1.8}
+.banners textarea{width:100%;resize:none;padding:8px 10px;border:1px solid var(--line);background:#fff;color:var(--ink);font:400 11px/1.6 ui-monospace,Consolas,monospace;letter-spacing:0}
 
 /* ---------- narrow screens ---------- */
 @media (max-width:900px){
@@ -301,6 +306,15 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
 <footer>
   <div class="fname">JPEmu Project</div>
   <div><span class="ja">このサイトはリンクフリーです。</span><span class="en">Feel free to link to this site.</span></div>
+  <div class="banners">
+    <div class="banner-imgs">
+      <img src="img/banner-200x40.png" width="200" height="40" alt="JPEmu Project">
+      <img src="img/banner-88x31.png" width="88" height="31" alt="JPEmu Project">
+    </div>
+    <p><span class="ja">リンク用バナーです。保存してお使いいただくか、下のコードを貼り付けてください。</span><span class="en">Link banners. Save them, or paste the code below.</span>
+      <span class="ja">高解像度版：</span><span class="en">High-resolution:</span> <a href="img/banner-400x80.png" target="_blank" rel="noopener">400×80</a> / <a href="img/banner-176x62.png" target="_blank" rel="noopener">176×62</a></p>
+    <textarea readonly rows="2" aria-label="バナーのHTML" onclick="this.select()">&lt;a href="https://jpemu-project.github.io/"&gt;&lt;img src="https://jpemu-project.github.io/img/banner-200x40.png" width="200" height="40" alt="JPEmu Project"&gt;&lt;/a&gt;</textarea>
+  </div>
   <div><span class="ja">このサイトではROMファイルやBIOSを配布していません。ゲーム名・商標は各権利者に帰属します。</span><span class="en">No ROM or BIOS files are distributed here. Game titles and trademarks belong to their owners.</span></div>
   <div>© 2026 JPEmu Project</div>
 </footer>
