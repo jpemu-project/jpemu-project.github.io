@@ -4,368 +4,318 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="JPEmu Renamer: No-Intro対応リネーム機能と内蔵コアを持つ、無料のWindows用エミュレーターランチャー / A free emulator launcher for Windows with a No-Intro compatible renamer.">
-<title>JPEmu Project</title>
+<title>JPEmu Renamer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
 <style>
-/* Layout: wiki-style two columns — a launcher-list menu on the left, one page (view) at a time on the right; each page is a hash view */
 :root{
-  --bg:#f3f1f5; --surface:#ffffff; --line:#dcd7e2; --fg:#1b1820; --muted:#665f72;
-  --gold:#9a6f14; --maroon:#8e2a33; --on-gold:#141218;
-  --menu-bg:#0e0d12; --menu-fg:#e6e2ec; --menu-line:#24212c; --menu-head:#8d869a; --menu-hover:#1d1a24; --menu-sel:#d6a94a; --menu-small:#6f6880;
-  --f-display:"Chakra Petch","Zen Kaku Gothic New",system-ui,sans-serif;
-  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --ink:#1f2328; --sub:#6b7078; --line:#e4e1dc; --paper:#ffffff; --paper2:#f6f4f0;
+  --copper:#b98257; --copper-dark:#8f6040;
+  --sky-1:#0a3a6b; --sky-2:#1b6fb8; --sky-3:#5aa9e6;
+  --f-serif:"Cormorant Garamond","Zen Kaku Gothic New",serif;
+  --f-label:"Montserrat","Zen Kaku Gothic New",sans-serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --menu-w:230px;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#141218; --surface:#1c1a22; --line:#2e2a36; --fg:#ece8f0; --muted:#9a93a6;
-  --gold:#d6a94a; --maroon:#c45a63; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#141218; --surface:#1c1a22; --line:#2e2a36; --fg:#ece8f0; --muted:#9a93a6;
-  --gold:#d6a94a; --maroon:#c45a63; color-scheme:dark}
-
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.8}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:2;letter-spacing:.04em}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-h1,h2,h3{font-family:var(--f-display);line-height:1.25;text-wrap:balance;margin:0}
-.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-code{font-family:var(--f-mono);font-size:.9em}
+:focus-visible{outline:1px solid var(--copper);outline-offset:4px}
+[data-lang="en"] .ja,[data-lang="ja"] .en{display:none}
 
-header{border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
-.brand{font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:.06em;text-decoration:none}
-.brand b{color:var(--gold);font-weight:700}
-.lang{display:flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.lang button{background:none;border:0;color:var(--muted);font:500 12px var(--f-mono);padding:4px 10px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;color:#fff;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 62%,rgba(255,236,200,.22),transparent 70%),
+    linear-gradient(180deg,var(--sky-3) 0%,var(--sky-2) 38%,var(--sky-1) 100%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;
+  background:linear-gradient(180deg,transparent,rgba(5,20,40,.35))}
+.hero-title{position:absolute;top:15%;left:0;right:0;text-align:center;z-index:2}
+.hero-title small{display:block;font:400 12px var(--f-label);letter-spacing:.5em;opacity:.9;padding-left:.5em}
+.hero-title h1{margin:10px 0 0;font:300 clamp(40px,6.4vw,76px)/1.1 var(--f-serif);letter-spacing:.14em;padding-left:.14em}
 
-.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:48px;padding-block:40px 72px;align-items:start}
-main{min-width:0}
+/* the app's TV-style preview as the centerpiece */
+.tv{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);width:min(46vw,520px);z-index:1;
+  filter:drop-shadow(0 30px 50px rgba(0,10,30,.55))}
+.tv .body{background:#141518;border-radius:14px;padding:12px 12px 0;border:1px solid #2a2c31}
+.tv .scr{aspect-ratio:4/3;background:#000;border-radius:3px;display:grid;grid-template-rows:repeat(4,1fr);gap:8px;padding:12px 0;overflow:hidden}
+.tv .scr i{display:block;animation:fade 6s ease-in-out infinite alternate}
+.tv .scr i:nth-child(1){background:linear-gradient(90deg,#000 6%,#bfe0ff 55%,#e6f3ff)}
+.tv .scr i:nth-child(2){background:linear-gradient(90deg,#000 6%,#e3102b 55%,#ff1a3a);animation-delay:.4s}
+.tv .scr i:nth-child(3){background:linear-gradient(90deg,#000 6%,#00c98f 55%,#00f0b0);animation-delay:.8s}
+.tv .scr i:nth-child(4){background:linear-gradient(90deg,#000 6%,#1747d8 55%,#2a6cff);animation-delay:1.2s}
+@keyframes fade{from{opacity:.75}to{opacity:1}}
+.tv .band{height:30px;margin:12px -12px 0;border-radius:0 0 13px 13px;background:linear-gradient(#d4d7db,#aeb2b7);
+  display:flex;align-items:center;justify-content:center;font:500 10px var(--f-label);letter-spacing:.4em;color:#3a3d42}
 
-/* side menu: styled like the launcher's system list */
-aside{order:-1;position:sticky;top:24px;background:var(--menu-bg);color:var(--menu-fg);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.side-group{border-bottom:1px solid var(--menu-line)}
-.side-group:last-child{border-bottom:0}
-.side-head{padding:10px 14px 4px;font:500 11px var(--f-mono);letter-spacing:.12em;color:var(--menu-head);text-transform:uppercase}
-aside ul{list-style:none;margin:0;padding:0 0 8px}
-aside a{display:flex;justify-content:space-between;gap:8px;padding:6px 14px;text-decoration:none;font-size:14px}
-aside a:hover{background:var(--menu-hover)}
-aside a.on{background:var(--menu-sel);color:#141218}
-aside a small{font:500 10px var(--f-mono);letter-spacing:.06em;color:var(--menu-small);align-self:center;white-space:nowrap}
-aside a.on small{color:#3c2f12}
+.emblem{position:fixed;top:28px;left:34px;z-index:30;width:72px;height:72px;border-radius:50%;
+  border:1px solid currentColor;display:grid;place-items:center;text-decoration:none;
+  font:italic 400 17px/1 var(--f-serif);color:var(--copper);text-align:center;transition:color .3s}
+.emblem span{display:block;font:400 7px var(--f-label);letter-spacing:.25em;margin-top:4px;font-style:normal}
 
-.view{display:none}
-.view.show{display:block}
-.crumb{font:400 12px var(--f-mono);color:var(--muted);margin-bottom:14px;letter-spacing:.04em}
-.crumb a{text-decoration:none}
-.crumb a:hover{color:var(--fg)}
-.view h1{font-size:clamp(28px,4vw,42px);font-weight:700}
-.view h2{font-size:20px;margin:40px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.view p{margin:0 0 18px;max-width:40em}
-.lead{color:var(--muted);margin-top:14px !important}
-.status{display:inline-block;font:500 11px var(--f-mono);letter-spacing:.1em;padding:3px 9px;border:1px solid var(--maroon);color:var(--maroon);border-radius:3px;margin-top:12px}
-.status.ok{border-color:var(--gold);color:var(--gold)}
+/* left menu */
+nav.side{position:fixed;left:36px;top:28vh;z-index:30}
+nav.side ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+nav.side a{display:inline-block;text-decoration:none;font:500 12px/2 var(--f-label);letter-spacing:.22em;color:#fff;
+  text-shadow:0 1px 8px rgba(0,20,50,.35);transition:color .3s}
+nav.side a:hover,nav.side a.on{color:var(--copper)}
+body.past nav.side a{color:var(--ink);text-shadow:none}
+body.past nav.side a:hover,body.past nav.side a.on{color:var(--copper)}
 
-.hero h1{font-size:clamp(32px,5vw,54px)}
-.hero h1 em{font-style:normal;color:var(--gold)}
-.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:28px}
-.tile{display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:4px;background:var(--surface);text-decoration:none}
-.tile:hover{border-color:var(--gold)}
-.tile strong{font-family:var(--f-display);font-size:18px}
-.tile span{font-size:14px;color:var(--muted)}
-.news{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}
-.news li{display:grid;grid-template-columns:110px 1fr;gap:12px}
-.news time{font-family:var(--f-mono);font-size:13px;color:var(--muted);padding-top:2px;font-variant-numeric:tabular-nums}
+.lang{position:fixed;top:30px;right:34px;z-index:30;display:flex;gap:14px}
+.lang button{background:none;border:0;padding:0;cursor:pointer;font:500 11px var(--f-label);letter-spacing:.2em;color:rgba(255,255,255,.6)}
+.lang button[aria-pressed="true"]{color:#fff;border-bottom:1px solid #fff}
+body.past .lang button{color:var(--sub)}
+body.past .lang button[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
 
-/* screenshot frame: the launcher's TV-style preview, as a placeholder until real screenshots are added */
-.shot{margin:28px 0 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);padding:14px;max-width:560px}
-.tv{background:#141518;border-radius:8px;padding:8px 8px 0;border:1px solid #2a2c31}
-.tv .scr{aspect-ratio:4/3;max-width:100%;background:#000;border-radius:2px;display:grid;grid-template-rows:repeat(4,1fr);gap:6px;padding:8px 0}
-.tv .scr i{display:block}
-.tv .scr i:nth-child(1){background:linear-gradient(90deg,#000 8%,#bfe0ff 55%,#e6f3ff)}
-.tv .scr i:nth-child(2){background:linear-gradient(90deg,#000 8%,#e3102b 55%,#ff1a3a)}
-.tv .scr i:nth-child(3){background:linear-gradient(90deg,#000 8%,#00c98f 55%,#00f0b0)}
-.tv .scr i:nth-child(4){background:linear-gradient(90deg,#000 8%,#1747d8 55%,#2a6cff)}
-.tv .band{height:22px;margin:8px -8px 0;border-radius:0 0 7px 7px;background:linear-gradient(#d4d7db,#aeb2b7);display:flex;align-items:center;justify-content:center;font:700 9px var(--f-display);letter-spacing:.3em;color:#3a3d42}
-.shot figcaption{font-size:13px;color:var(--muted);margin-top:10px}
+.vcopy{position:fixed;right:30px;top:50%;transform:translateY(-50%);z-index:20;writing-mode:vertical-rl;
+  font:400 10px var(--f-label);letter-spacing:.2em;color:rgba(255,255,255,.85);transition:color .3s}
+body.past .vcopy{color:var(--sub)}
 
-.feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;margin:24px 0;padding:0;list-style:none}
-.feat li{border-top:1px solid var(--line);padding-top:12px;min-width:0}
-.feat strong{display:block;font-size:15px}
-.feat span{color:var(--muted);font-size:14px}
+.cta{position:fixed;right:0;bottom:0;z-index:30;display:flex;align-items:center;gap:22px;padding:15px 22px 15px 24px;
+  background:var(--copper);color:#fff;text-decoration:none;font:500 11px var(--f-label);letter-spacing:.24em}
+.cta:hover{background:var(--copper-dark)}
+.cta svg{width:14px;height:14px}
 
-.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:4px}
-table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
-th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
-th{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--surface)}
-tr:last-child td{border-bottom:0}
-td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.dl{display:inline-flex;padding:5px 12px;border-radius:3px;font:700 13px var(--f-body);text-decoration:none;background:var(--gold);color:var(--on-gold)}
-.dl[aria-disabled="true"]{background:none;border:1px dashed var(--line);color:var(--muted);pointer-events:none}
+.menu-btn{display:none}
 
-dl.spec{display:grid;grid-template-columns:max-content 1fr;gap:8px 24px;margin:0;font-size:14px}
-dl.spec dt{color:var(--muted);font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;padding-top:2px}
-dl.spec dd{margin:0;min-width:0}
-ol.steps{margin:0;padding-left:1.4em;display:grid;gap:6px;max-width:40em}
-pre{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px;overflow-x:auto;font:400 12.5px/1.7 var(--f-mono);margin:0 0 18px}
-pre .t{color:var(--gold)}
-.note{font-size:13px;color:var(--muted);border-left:2px solid var(--maroon);padding-left:12px;margin:18px 0 0 !important}
-.btn{display:inline-flex;padding:11px 20px;border-radius:4px;font:700 14px var(--f-body);text-decoration:none;border:1px solid var(--line)}
-.btn.primary{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
-.btn:hover{border-color:var(--gold)}
-.row{display:flex;gap:12px;flex-wrap:wrap}
+/* ---------- sections ---------- */
+main{padding-left:var(--menu-w);padding-right:80px}
+section.sec{max-width:880px;margin:0 auto;padding:130px 0 40px}
+.sec-head{text-align:center;margin-bottom:56px}
+.sec-head h2{margin:0;font:300 clamp(30px,4vw,44px)/1.2 var(--f-serif);letter-spacing:.16em}
+.sec-head p{margin:10px 0 0;font-size:12px;letter-spacing:.3em;color:var(--copper)}
+.lead{max-width:36em;margin:0 auto 48px;text-align:center;color:var(--sub)}
 
-.costs{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:10px}
-.costs li{display:flex;gap:12px;align-items:baseline}
-.costs li::before{content:"";flex:none;width:8px;height:8px;background:var(--gold)}
-.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 24px;padding:0;list-style:none}
-.tiers li{padding:14px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
-.tiers b{display:block;font:700 20px var(--f-display);font-variant-numeric:tabular-nums}
-.tiers small{display:block;font:500 11px var(--f-mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-.tiers span{display:block;font-size:13px;color:var(--muted);margin-top:6px}
+.intro{text-align:center;max-width:40em;margin:0 auto;padding-top:120px}
+.intro p{margin:0 0 1.2em;color:var(--sub)}
+.intro .big{font:400 clamp(20px,2.4vw,26px)/1.8 var(--f-body);color:var(--ink);letter-spacing:.1em}
 
-footer{border-top:1px solid var(--line)}
-footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;margin:72px auto 0;padding:0;list-style:none;max-width:880px}
+.feat li{text-align:center}
+.feat b{display:block;font:400 22px var(--f-serif);letter-spacing:.1em;color:var(--copper);margin-bottom:6px}
+.feat strong{display:block;font-weight:500;margin-bottom:6px}
+.feat span{font-size:13px;color:var(--sub);line-height:1.9;display:block}
 
-[data-lang="en"] .ja, [data-lang="ja"] .en{display:none}
+.dl-card{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.dl-card + .dl-card{border-top:0}
+.dl-card h3{margin:0;font:400 24px var(--f-serif);letter-spacing:.08em}
+.dl-card p{margin:4px 0 0;font-size:13px;color:var(--sub)}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:13px 26px;border:1px solid var(--ink);text-decoration:none;
+  font:500 11px var(--f-label);letter-spacing:.24em;white-space:nowrap;background:none;color:var(--ink)}
+.btn:hover{background:var(--ink);color:#fff}
+.btn.fill{background:var(--copper);border-color:var(--copper);color:#fff}
+.btn.fill:hover{background:var(--copper-dark);border-color:var(--copper-dark)}
+.btn[aria-disabled="true"]{border-style:dashed;color:var(--sub);border-color:var(--line);pointer-events:none}
+dl.spec{display:grid;grid-template-columns:max-content 1fr;gap:10px 40px;margin:40px 0 0;font-size:13px}
+dl.spec dt{font:500 11px/2.2 var(--f-label);letter-spacing:.2em;color:var(--copper)}
+dl.spec dd{margin:0;color:var(--sub)}
 
-@media (max-width:860px){
-  .layout{grid-template-columns:1fr;gap:32px;padding-block:28px 56px}
-  aside{position:static}
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.shots figure{margin:0}
+.shots .ph{aspect-ratio:16/10;background:var(--paper2);border:1px solid var(--line);display:grid;place-items:center;
+  font:400 italic 20px var(--f-serif);color:#b4aea5;letter-spacing:.1em}
+.shots figcaption{margin-top:10px;font-size:12px;color:var(--sub);text-align:center}
+
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:0}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:80px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line)}
+ol.steps li:last-child{border-bottom:1px solid var(--line)}
+ol.steps li::before{content:counter(s,decimal-leading-zero);font:300 34px/1 var(--f-serif);color:var(--copper)}
+ol.steps strong{display:block;font-weight:500}
+ol.steps span{font-size:13px;color:var(--sub)}
+.note{margin:28px 0 0;text-align:center;font-size:13px;color:var(--sub)}
+.center{text-align:center}
+
+.links{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.links a{display:grid;grid-template-columns:1fr auto;gap:16px;padding:22px 4px;border-bottom:1px solid var(--line);text-decoration:none}
+.links a:hover strong{color:var(--copper)}
+.links strong{font:400 21px var(--f-serif);letter-spacing:.06em;transition:color .2s}
+.links span{font-size:13px;color:var(--sub);align-self:center}
+
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 48px;padding:0;list-style:none;border:1px solid var(--line)}
+.tiers li{padding:26px 14px;text-align:center;border-left:1px solid var(--line)}
+.tiers li:first-child{border-left:0}
+.tiers small{display:block;font:500 10px var(--f-label);letter-spacing:.25em;color:var(--copper)}
+.tiers b{display:block;font:300 34px/1.3 var(--f-serif);letter-spacing:.04em}
+.tiers span{display:block;font-size:12px;color:var(--sub)}
+
+footer{margin-top:120px;padding:48px 24px calc(80px + env(safe-area-inset-bottom,0px));background:var(--paper2);text-align:center;font-size:12px;color:var(--sub)}
+footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);margin-bottom:10px}
+
+/* ---------- narrow screens ---------- */
+@media (max-width:900px){
+  main{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+  section.sec{padding-top:96px}
+  .vcopy{display:none}
+  .emblem{top:16px;left:16px;width:58px;height:58px;font-size:14px}
+  .lang{top:auto;bottom:18px;left:18px;right:auto}
+  body:not(.past) .lang button{color:rgba(255,255,255,.7)}
+  .menu-btn{display:block;position:fixed;top:24px;right:18px;z-index:40;background:none;border:0;cursor:pointer;
+    font:500 11px var(--f-label);letter-spacing:.24em;color:#fff;padding:8px 0}
+  body.past .menu-btn{color:var(--ink)}
+  nav.side{inset:0;top:0;left:0;background:rgba(255,255,255,.97);display:none;align-items:center;justify-content:center;z-index:35}
+  body.open nav.side{display:flex}
+  body.open .menu-btn{color:var(--ink)}
+  nav.side ul{gap:14px;text-align:center}
+  nav.side a,body.past nav.side a{color:var(--ink);text-shadow:none;font-size:14px}
+  .tv{width:min(78vw,420px);top:60%}
+  .feat{grid-template-columns:1fr;gap:32px}
+  .shots{grid-template-columns:1fr}
+  .tiers{grid-template-columns:repeat(2,1fr)}
+  .tiers li:nth-child(3){border-left:0}
+  .tiers li:nth-child(n+3){border-top:1px solid var(--line)}
+  .dl-card{grid-template-columns:1fr}
+  dl.spec{grid-template-columns:1fr;gap:0}
+  dl.spec dd{margin-bottom:12px}
+  ol.steps li{grid-template-columns:52px 1fr;gap:12px}
 }
-@media (max-width:520px){
-  .tiles,.feat{grid-template-columns:1fr}
-  .news li{grid-template-columns:1fr;gap:0}
-}
-@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tv .scr i{animation:none}}
 </style>
 </head>
 <body>
-
 <div id="app" data-lang="ja">
-<header>
-  <div class="wrap">
-    <a class="brand" href="#home">JPEmu <b>PROJECT</b></a>
-    <div class="lang" role="group" aria-label="Language">
-      <button type="button" id="lang-ja" data-set="ja" aria-pressed="true">JA</button>
-      <button type="button" id="lang-en" data-set="en" aria-pressed="false">EN</button>
-    </div>
+
+<a class="emblem" href="#top" aria-label="JPEmu Renamer"><div>JPEmu<span>RENAMER</span></div></a>
+
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="side">MENU</button>
+<nav class="side" id="side" aria-label="Menu">
+  <ul>
+    <li><a href="#download"><span class="ja">ダウンロード</span><span class="en">DOWNLOAD</span></a></li>
+    <li><a href="#screenshots"><span class="ja">スクリーンショット</span><span class="en">SCREENSHOTS</span></a></li>
+    <li><a href="#manual"><span class="ja">マニュアル</span><span class="en">MANUAL</span></a></li>
+    <li><a href="#feedback"><span class="ja">バグ報告・機能要望</span><span class="en">FEEDBACK</span></a></li>
+    <li><a href="#links"><span class="ja">リンク</span><span class="en">LINKS</span></a></li>
+    <li><a href="#donate"><span class="ja">寄付</span><span class="en">DONATE</span></a></li>
+  </ul>
+</nav>
+
+<div class="lang" role="group" aria-label="Language">
+  <button type="button" data-set="ja" aria-pressed="true">JA</button>
+  <button type="button" data-set="en" aria-pressed="false">EN</button>
+</div>
+<div class="vcopy" aria-hidden="true">© 2026 JPEMU PROJECT</div>
+<a class="cta" href="#download">DOWNLOAD
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg></a>
+
+<header class="hero" id="top">
+  <div class="hero-title">
+    <small>The Emulator Launcher</small>
+    <h1>JPEmu Renamer</h1>
   </div>
+  <div class="tv" aria-hidden="true"><div class="body"><div class="scr"><i></i><i></i><i></i><i></i></div><div class="band">JPEmu</div></div></div>
 </header>
 
-<div class="wrap layout">
 <main>
+  <div class="intro">
+    <p class="big"><span class="ja">手元のゲームを、正しい名前で。<br>そのまま遊べる。</span><span class="en">Your games, properly named.<br>Ready to play.</span></p>
+    <p><span class="ja">JPEmu Renamer は、No-Intro に対応するリネーム機能を持った、内蔵コアでそのまま遊べる無料の Windows 用エミュレーターランチャーです。</span><span class="en">JPEmu Renamer is a free emulator launcher for Windows with a No-Intro compatible renamer and built-in cores that let you play right away.</span></p>
+  </div>
+  <ul class="feat">
+    <li><b>Rename</b><strong><span class="ja">DATで正しい名前に</span><span class="en">Correct names from a DAT</span></strong><span><span class="ja">No-Intro / OfflineList のDATとCRC32で照合。実行後も「元に戻す」で戻せます。</span><span class="en">Matched by CRC32 against No-Intro / OfflineList DATs. Every run can be undone.</span></span></li>
+    <li><b>Play</b><strong><span class="ja">内蔵コアですぐ遊べる</span><span class="en">Built-in cores</span></strong><span><span class="ja">libretro コアをアプリから一括ダウンロード。テレビ風の画面でデモも流れます。</span><span class="en">Download libretro cores in the app. Demos play on a TV-style preview.</span></span></li>
+    <li><b>Collect</b><strong><span class="ja">コレクションを整える</span><span class="en">Tidy your collection</span></strong><span><span class="ja">国旗表示、所有リスト、一括解凍・圧縮。6テーマ・16言語に対応。</span><span class="en">Region flags, owned lists, bulk zip / unzip. 6 themes, 16 languages.</span></span></li>
+  </ul>
 
-  <!-- HOME -->
-  <section class="view hero" id="v-home">
-    <div class="label"><span class="ja">レトロゲームのための道具</span><span class="en">Tools for retro game collectors</span></div>
-    <h1 style="margin-top:12px"><span class="ja">手元のゲームを、<em>正しい名前で遊ぶ。</em></span><span class="en">Your games, <em>properly named and ready to play.</em></span></h1>
-    <p class="lead"><span class="ja">No-Intro に対応するリネーム機能を持った、内蔵コアでそのまま遊べる無料のWindows用エミュレーターランチャー「JPEmu Renamer」と、自分で吸い出したROMを正しい名前にそろえるDATファイルを公開しています。</span><span class="en">JPEmu Renamer is a free emulator launcher for Windows with a No-Intro compatible renamer and built-in cores that let you play right away. This site also publishes DAT files that give your own ROM dumps their proper names.</span></p>
-    <div class="tiles">
-      <a class="tile" href="#launcher"><strong>JPEmu Renamer</strong><span><span class="ja">Windows用エミュレーターランチャー</span><span class="en">Emulator launcher for Windows</span></span></a>
-      <a class="tile" href="#dat-fc"><strong><span class="ja">ファミコン DAT</span><span class="en">Famicom DAT</span></strong><span><span class="ja">リネーム用（OfflineList形式）</span><span class="en">Rename DAT (OfflineList format)</span></span></a>
+  <section class="sec" id="download">
+    <div class="sec-head"><h2>Download</h2><p>ダウンロード</p></div>
+    <div class="dl-card">
+      <div><h3>JPEmu Renamer 1.0</h3><p><span class="ja">Windows 10 / 11（64bit）・インストール不要の exe 1つ</span><span class="en">Windows 10 / 11 (64-bit) · a single exe, no install</span></p></div>
+      <a class="btn" aria-disabled="true" href="#download"><span class="ja">準備中</span><span class="en">COMING SOON</span></a>
     </div>
-    <h2><span class="ja">更新履歴</span><span class="en">Updates</span></h2>
-    <ul class="news">
-      <li><time datetime="2026-11-03">2026-11-03</time><span><span class="ja">JPEmu Renamer に国旗表示、テーマ6種、16言語対応を追加しました。GitHub Sponsors での支援受付を申請中です。</span><span class="en">JPEmu Renamer gained region flags, six themes and 16 languages. GitHub Sponsors is awaiting approval.</span></span></li>
-    </ul>
+    <div class="dl-card">
+      <div><h3><span class="ja">ファミコン DAT</span><span class="en">Famicom DAT</span></h3><p><span class="ja">日本語タイトル・発売日・価格・ジャンル入り 1,053本（OfflineList形式）</span><span class="en">1,053 titles in Japanese with date, price and genre (OfflineList format)</span></p></div>
+      <a class="btn" aria-disabled="true" href="#download"><span class="ja">準備中</span><span class="en">COMING SOON</span></a>
+    </div>
+    <dl class="spec">
+      <dt>REQUIRES</dt><dd><span class="ja">ご自身で吸い出したROM。リネームする場合はOfflineList形式のDAT。.NETの別途インストールは不要です。</span><span class="en">ROMs you dumped yourself, and an OfflineList DAT for renaming. No separate .NET install needed.</span></dd>
+      <dt>LANGUAGES</dt><dd>日本語 · English · 简体中文 · 繁體中文 · 한국어 · Français · Italiano · Español · Português · Русский · Deutsch · Polski · Türkçe · Bahasa Indonesia · Tiếng Việt · ไทย</dd>
+      <dt>SOURCE</dt><dd><a href="https://github.com/jpemu-project/JPEmu-Renamer" target="_blank" rel="noopener">github.com/jpemu-project/JPEmu-Renamer</a></dd>
+    </dl>
   </section>
 
-  <!-- LAUNCHER -->
-  <section class="view" id="v-launcher">
-    <div class="crumb"><a href="#home">Home</a> / Launcher</div>
-    <h1>JPEmu Renamer</h1>
-    <span class="status"><span class="ja">v1.0 公開準備中</span><span class="en">v1.0 COMING SOON</span></span>
-    <p class="lead"><span class="ja">自分で吸い出したROMを、DATに合わせて正しい名前にリネームし、内蔵コア（libretro）でそのまま遊べるランチャーです。エミュレーターを別に用意しなくても始められます。</span><span class="en">Rename your own ROM dumps to their correct names with a DAT, then play them right away with built-in libretro cores. No separate emulator setup needed.</span></p>
-
-    <figure class="shot">
-      <div class="tv" aria-hidden="true"><div class="scr"><i></i><i></i><i></i><i></i></div><div class="band">JPEmu</div></div>
-      <figcaption><span class="ja">テレビ風の自動プレビュー（スクリーンショットは公開時に差し替えます）</span><span class="en">TV-style auto preview (screenshots will be added at release)</span></figcaption>
-    </figure>
-
-    <ul class="feat">
-      <li><strong><span class="ja">No-Intro / OfflineList のDATでリネーム</span><span class="en">Rename with No-Intro / OfflineList DATs</span></strong><span><span class="ja">CRC32で照合し、一致したファイルだけを変更。実行ごとに履歴を残し「元に戻す」で戻せます。</span><span class="en">Matches by CRC32 and changes only matching files. Every run is logged and can be undone.</span></span></li>
-      <li><strong><span class="ja">内蔵コアでそのまま遊べる</span><span class="en">Play with built-in cores</span></strong><span><span class="ja">libretro コアをアプリから一括ダウンロード・更新。手持ちのエミュレーター（exe）でも起動できます。</span><span class="en">Download and update libretro cores in the app, or launch your own emulator.</span></span></li>
-      <li><strong><span class="ja">自動プレビュー</span><span class="en">Auto preview</span></strong><span><span class="ja">タイトルを選ぶと、テレビ風の画面でゲームのデモが流れます。自分で撮ったスクリーンショットも表示できます。</span><span class="en">Pick a title and its demo plays on a TV-style screen. Your own screenshots can be shown too.</span></span></li>
-      <li><strong><span class="ja">ROM情報と国旗</span><span class="en">ROM info and region flags</span></strong><span><span class="ja">販売元・ジャンル・発売日・価格をノート風に表示。タイトルの前に発売地域の国旗を出せます。</span><span class="en">Publisher, genre, release date and price on a notebook-style card, with region flags before titles.</span></span></li>
-      <li><strong><span class="ja">整理のための道具</span><span class="en">Housekeeping tools</span></strong><span><span class="ja">DATに無いファイルの移動、全ROMの解凍・圧縮、所有／未所有リストの書き出し。</span><span class="en">Move files not in the DAT, unzip or zip every ROM, and export owned / missing lists.</span></span></li>
-      <li><strong><span class="ja">6テーマ・16言語</span><span class="en">6 themes, 16 languages</span></strong><span><span class="ja">ライト・ダーク・アクア・メタル・ピンク・シック。日本語・英語・中国語など16言語に対応。</span><span class="en">Light, Dark, Aqua, Metal, Pink and Chic. Available in 16 languages.</span></span></li>
-    </ul>
-
-    <h2><span class="ja">ダウンロード</span><span class="en">Download</span></h2>
-    <div class="tbl"><table>
-      <thead><tr><th><span class="ja">バージョン</span><span class="en">Version</span></th><th><span class="ja">公開日</span><span class="en">Date</span></th><th><span class="ja">内容</span><span class="en">Notes</span></th><th></th></tr></thead>
-      <tbody>
-        <tr><td class="num">1.0</td><td class="num">—</td><td><span class="ja">最初の公開版を準備中です</span><span class="en">First release in preparation</span></td><td><a class="dl" aria-disabled="true" href="#launcher"><span class="ja">準備中</span><span class="en">Soon</span></a></td></tr>
-      </tbody>
-    </table></div>
-    <h2><span class="ja">動作環境</span><span class="en">Requirements</span></h2>
-    <dl class="spec">
-      <dt>OS</dt><dd>Windows 10 / 11 (64-bit)</dd>
-      <dt><span class="ja">インストール</span><span class="en">INSTALL</span></dt><dd><span class="ja">不要（exe 1つで動きます。.NET の別途インストールも不要）</span><span class="en">None. A single exe; no separate .NET install</span></dd>
-      <dt><span class="ja">必要なもの</span><span class="en">NEEDS</span></dt><dd><span class="ja">ご自身で吸い出したROM、OfflineList形式のDAT（リネームする場合）</span><span class="en">ROMs you dumped yourself, an OfflineList DAT (for renaming)</span></dd>
-      <dt><span class="ja">言語</span><span class="en">LANGUAGES</span></dt><dd>日本語 · English · 简体中文 · 繁體中文 · 한국어 · Français · Italiano · Español · Português · Русский · Deutsch · Polski · Türkçe · Bahasa Indonesia · Tiếng Việt · ไทย</dd>
-    </dl>
-    <div class="row" style="margin-top:24px"><a class="btn" href="https://github.com/jpemu-project/JPEmu-Renamer" target="_blank" rel="noopener"><span class="ja">GitHubでソースを見る</span><span class="en">View source on GitHub</span></a></div>
+  <section class="sec" id="screenshots">
+    <div class="sec-head"><h2>Screenshots</h2><p>スクリーンショット</p></div>
+    <div class="shots">
+      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">ゲーム一覧とテレビ風プレビュー</span><span class="en">Game list and TV-style preview</span></figcaption></figure>
+      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">DATでリネーム</span><span class="en">Renaming with a DAT</span></figcaption></figure>
+      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">内蔵コアでプレイ</span><span class="en">Playing with a built-in core</span></figcaption></figure>
+      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">6つのテーマ</span><span class="en">Six themes</span></figcaption></figure>
+    </div>
   </section>
 
-  <!-- DAT: FAMICOM -->
-  <section class="view" id="v-dat-fc">
-    <div class="crumb"><a href="#home">Home</a> / DAT / Nintendo</div>
-    <h1><span class="ja">ファミリーコンピュータ DAT</span><span class="en">Family Computer DAT</span></h1>
-    <span class="status"><span class="ja">作成中</span><span class="en">IN PROGRESS</span></span>
-    <p class="lead"><span class="ja">自分で吸い出したファミコンのROMを、日本語版Wikipediaのタイトル一覧と同じ名前にそろえるためのDATです。発売日・価格・ジャンルも収録しています。OfflineList か JPEmu Renamer でリネームできます。</span><span class="en">Renames your self-dumped Famicom ROMs to match the title list on Japanese Wikipedia, with release date, price and genre. Rename with OfflineList or JPEmu Renamer.</span></p>
-    <h2><span class="ja">ダウンロード</span><span class="en">Download</span></h2>
-    <div class="tbl"><table>
-      <thead><tr><th><span class="ja">バージョン</span><span class="en">Version</span></th><th><span class="ja">更新日</span><span class="en">Date</span></th><th><span class="ja">収録数</span><span class="en">Titles</span></th><th></th></tr></thead>
-      <tbody>
-        <tr><td class="num">—</td><td class="num">—</td><td class="num">1,053</td><td><a class="dl" aria-disabled="true" href="#dat-fc"><span class="ja">準備中</span><span class="en">Soon</span></a></td></tr>
-      </tbody>
-    </table></div>
-    <h2><span class="ja">仕様</span><span class="en">Details</span></h2>
-    <dl class="spec">
-      <dt><span class="ja">形式</span><span class="en">FORMAT</span></dt><dd>OfflineList XML</dd>
-      <dt><span class="ja">命名基準</span><span class="en">NAMING</span></dt><dd><span class="ja">日本語版Wikipedia「ファミリーコンピュータのゲームタイトル一覧」</span><span class="en">Japanese Wikipedia, "List of Family Computer game titles"</span></dd>
-      <dt><span class="ja">収録項目</span><span class="en">FIELDS</span></dt><dd><span class="ja">タイトル・販売元・ジャンル・発売日・価格・CRC32</span><span class="en">Title, publisher, genre, release date, price, CRC32</span></dd>
-    </dl>
-    <h2><span class="ja">使い方</span><span class="en">How to use</span></h2>
+  <section class="sec" id="manual">
+    <div class="sec-head"><h2>Manual</h2><p>マニュアル</p></div>
     <ol class="steps">
-      <li><span class="ja">DATファイルをダウンロードして解凍します。</span><span class="en">Download and unzip the DAT.</span></li>
-      <li><span class="ja">JPEmu Renamer の「機種の設定」でDATとROMフォルダを指定します（OfflineListの場合は <code>datas</code> フォルダに入れます）。</span><span class="en">In JPEmu Renamer, set the DAT and ROM folder in System settings (for OfflineList, put it in the <code>datas</code> folder).</span></li>
-      <li><span class="ja">「リネーム」タブで内容を確認して、リネームを実行します。</span><span class="en">Check the list on the Rename tab, then run the rename.</span></li>
+      <li><div><strong><span class="ja">機種を追加する</span><span class="en">Add a system</span></strong><span><span class="ja">最初の起動で、好きな名前の機種を1つ作ります（例：ファミコン）。</span><span class="en">On first launch, create a system with any name (e.g. Famicom).</span></span></div></li>
+      <li><div><strong><span class="ja">ROMフォルダとDATを指定する</span><span class="en">Set the ROM folder and DAT</span></strong><span><span class="ja">「機種の設定」で、ROMの入ったフォルダとDATファイルを選びます。</span><span class="en">In System settings, choose the folder with your ROMs and the DAT file.</span></span></div></li>
+      <li><div><strong><span class="ja">リネームする</span><span class="en">Rename</span></strong><span><span class="ja">「リネーム」タブで変更内容を確認して実行。DATに無いファイルは別フォルダへ移動もできます。</span><span class="en">Review the changes on the Rename tab and run it. Files not in the DAT can be moved aside.</span></span></div></li>
+      <li><div><strong><span class="ja">遊ぶ</span><span class="en">Play</span></strong><span><span class="ja">コアをダウンロードして、ゲームをダブルクリック（またはEnter）で起動します。</span><span class="en">Download a core, then double-click a game (or press Enter).</span></span></div></li>
     </ol>
-    <h2><span class="ja">記述例</span><span class="en">Sample entry</span></h2>
-<pre><span class="t">&lt;game&gt;</span>
-  <span class="t">&lt;title&gt;</span>ドンキーコング<span class="t">&lt;/title&gt;</span>
-  <span class="t">&lt;im1CRC&gt;</span>1983年7月15日<span class="t">&lt;/im1CRC&gt;</span>
-  <span class="t">&lt;im2CRC&gt;</span>3,800円<span class="t">&lt;/im2CRC&gt;</span>
-  <span class="t">&lt;publisher&gt;</span>任天堂<span class="t">&lt;/publisher&gt;</span>
-  <span class="t">&lt;sourceRom&gt;</span>アクション<span class="t">&lt;/sourceRom&gt;</span>
-  <span class="t">&lt;files&gt;&lt;romCRC</span> extension=".nes"<span class="t">&gt;</span>E40B593B<span class="t">&lt;/romCRC&gt;&lt;/files&gt;</span>
-<span class="t">&lt;/game&gt;</span></pre>
-    <p class="note"><span class="ja">DATに含まれるのはゲーム名などの情報とチェックサムだけです。ROMファイルは配布していません。</span><span class="en">The DAT holds only titles, details and checksums. No ROM files are distributed here.</span></p>
+    <p class="note"><span class="ja">くわしい使い方は、アプリの「ヘルプ」または F1 キーで開くマニュアルをご覧ください。</span><span class="en">For full details, open the manual from Help or with the F1 key in the app.</span></p>
   </section>
 
-  <section class="view" id="v-dat-fds">
-    <div class="crumb"><a href="#home">Home</a> / DAT / Nintendo</div>
-    <h1><span class="ja">ディスクシステム DAT</span><span class="en">Famicom Disk System DAT</span></h1>
-    <span class="status"><span class="ja">予定</span><span class="en">PLANNED</span></span>
-    <p class="lead"><span class="ja">ファミコンDATの公開後に作成を予定しています。</span><span class="en">Planned after the Famicom DAT is released.</span></p>
-  </section>
-  <section class="view" id="v-dat-sfc">
-    <div class="crumb"><a href="#home">Home</a> / DAT / Nintendo</div>
-    <h1><span class="ja">スーパーファミコン DAT</span><span class="en">Super Famicom DAT</span></h1>
-    <span class="status"><span class="ja">予定</span><span class="en">PLANNED</span></span>
-    <p class="lead"><span class="ja">ファミコンDATの公開後に作成を予定しています。</span><span class="en">Planned after the Famicom DAT is released.</span></p>
+  <section class="sec" id="feedback">
+    <div class="sec-head"><h2>Feedback</h2><p>バグ報告・機能要望</p></div>
+    <p class="lead"><span class="ja">不具合の報告や「こんな機能がほしい」というご要望は、GitHub の Issues からお送りください。使っている機種・ROM・エラーの内容を書いていただけると助かります。</span><span class="en">Please send bug reports and feature requests through GitHub Issues. It helps to include the system, the ROM and any error message.</span></p>
+    <div class="center"><a class="btn" href="https://github.com/jpemu-project/JPEmu-Renamer/issues/new" target="_blank" rel="noopener"><span class="ja">ISSUE を送る</span><span class="en">OPEN AN ISSUE</span></a></div>
   </section>
 
-  <!-- SUPPORT -->
-  <section class="view" id="v-support">
-    <div class="crumb"><a href="#home">Home</a> / Support</div>
-    <h1><span class="ja">開発を支援する</span><span class="en">Support the work</span></h1>
-    <span class="status"><span class="ja">GitHubの審査中</span><span class="en">AWAITING GITHUB APPROVAL</span></span>
-    <p class="lead"><span class="ja">DATを正確にするには、実物のカセットを自分で吸い出して確かめる必要があります。いただいたご支援は、次の費用と開発の継続に使わせていただきます。</span><span class="en">Accurate DATs mean dumping and checking real cartridges by hand. Your support goes toward these costs and continued development.</span></p>
-    <ul class="costs">
-      <li><span class="ja">検証用のソフト（カセット）の購入</span><span class="en">Buying cartridges to verify</span></li>
-      <li><span class="ja">吸い出し機材の購入と維持</span><span class="en">Dumping hardware and upkeep</span></li>
-      <li><span class="ja">JPEmu Renamer の開発とサイトの運営</span><span class="en">Developing JPEmu Renamer and running this site</span></li>
+  <section class="sec" id="links">
+    <div class="sec-head"><h2>Links</h2><p>リンク</p></div>
+    <ul class="links">
+      <li><a href="https://github.com/jpemu-project/JPEmu-Renamer" target="_blank" rel="noopener"><strong>GitHub</strong><span><span class="ja">ソースコード</span><span class="en">Source code</span></span></a></li>
+      <li><a href="https://no-intro.org/" target="_blank" rel="noopener"><strong>No-Intro</strong><span><span class="ja">ROMの照合用データベース</span><span class="en">ROM preservation database</span></span></a></li>
+      <li><a href="https://www.libretro.com/" target="_blank" rel="noopener"><strong>libretro</strong><span><span class="ja">内蔵コアの提供元</span><span class="en">Home of the built-in cores</span></span></a></li>
     </ul>
-    <h2><span class="ja">GitHub Sponsors のプラン</span><span class="en">GitHub Sponsors tiers</span></h2>
+  </section>
+
+  <section class="sec" id="donate">
+    <div class="sec-head"><h2>Donate</h2><p>寄付</p></div>
+    <p class="lead"><span class="ja">いただいたご支援は、検証用のソフトや吸い出し機材の購入、開発の継続に使わせていただきます。応援ありがとうございます。</span><span class="en">Your support goes toward cartridges and dumping hardware for verification, and continued development. Thank you.</span></p>
     <ul class="tiers">
-      <li><small><span class="ja">毎月</span><span class="en">Monthly</span></small><b>$3</b><span><span class="ja">スポンサーバッジ</span><span class="en">Sponsor badge</span></span></li>
-      <li><small><span class="ja">毎月</span><span class="en">Monthly</span></small><b>$5</b><span><span class="ja">バッジ＋READMEにお名前</span><span class="en">Badge + name in README</span></span></li>
-      <li><small><span class="ja">毎月</span><span class="en">Monthly</span></small><b>$10</b><span><span class="ja">バッジ＋READMEにお名前</span><span class="en">Badge + name in README</span></span></li>
-      <li><small><span class="ja">1回だけ</span><span class="en">One-time</span></small><b>$5 / $10</b><span><span class="ja">好きな金額でも支援できます</span><span class="en">Custom amounts welcome</span></span></li>
+      <li><small><span class="ja">毎月</span><span class="en">MONTHLY</span></small><b>$3</b><span><span class="ja">スポンサーバッジ</span><span class="en">Sponsor badge</span></span></li>
+      <li><small><span class="ja">毎月</span><span class="en">MONTHLY</span></small><b>$5</b><span><span class="ja">READMEにお名前</span><span class="en">Name in README</span></span></li>
+      <li><small><span class="ja">毎月</span><span class="en">MONTHLY</span></small><b>$10</b><span><span class="ja">READMEにお名前</span><span class="en">Name in README</span></span></li>
+      <li><small><span class="ja">1回だけ</span><span class="en">ONE-TIME</span></small><b>$5+</b><span><span class="ja">金額は自由</span><span class="en">Any amount</span></span></li>
     </ul>
-    <div class="row"><a class="btn primary" href="https://github.com/sponsors/jpemu-project" target="_blank" rel="noopener"><span class="ja">GitHub Sponsors で支援する</span><span class="en">Sponsor on GitHub</span></a></div>
-    <p class="note"><span class="ja">アプリのヘルプにある「♥ 開発支援」ボタンからも同じページを開けます。</span><span class="en">The "♥ Support development" button in the app's Help opens the same page.</span></p>
+    <div class="center"><a class="btn fill" href="https://github.com/sponsors/jpemu-project" target="_blank" rel="noopener">GITHUB SPONSORS</a></div>
   </section>
-
-  <!-- ABOUT -->
-  <section class="view" id="v-about">
-    <div class="crumb"><a href="#home">Home</a> / About</div>
-    <h1><span class="ja">このサイトについて</span><span class="en">About</span></h1>
-    <p class="lead"><span class="ja">個人で開発している JPEmu Renamer とDATを公開するサイトです。</span><span class="en">A personal site for JPEmu Renamer and the DATs I make.</span></p>
-    <h2><span class="ja">注意事項</span><span class="en">Notes</span></h2>
-    <p><span class="ja">このサイトではROMファイルやBIOSを配布していません。DATやランチャーは、ご自身で所有するソフトから吸い出したデータの整理にお使いください。ゲーム名・商標は各権利者に帰属します。</span><span class="en">This site does not distribute ROMs or BIOS files. Use the DATs and the launcher to organize data dumped from software you own. Game titles and trademarks belong to their owners.</span></p>
-    <h2><span class="ja">連絡先</span><span class="en">Contact</span></h2>
-    <p><span class="ja">不具合の報告や要望は GitHub の Issues へお願いします。</span><span class="en">Please send bug reports and requests through GitHub Issues.</span></p>
-    <div class="row"><a class="btn" href="https://github.com/jpemu-project/JPEmu-Renamer/issues" target="_blank" rel="noopener">GitHub Issues</a></div>
-  </section>
-
 </main>
 
-<aside aria-label="Menu">
-  <div class="side-group">
-    <div class="side-head">Menu</div>
-    <ul>
-      <li><a href="#home" data-v="home"><span><span class="ja">トップ</span><span class="en">Home</span></span></a></li>
-      <li><a href="#about" data-v="about"><span><span class="ja">このサイトについて</span><span class="en">About</span></span></a></li>
-    </ul>
-  </div>
-  <div class="side-group">
-    <div class="side-head">Launcher</div>
-    <ul>
-      <li><a href="#launcher" data-v="launcher"><span>JPEmu Renamer</span><small>v1.0</small></a></li>
-    </ul>
-  </div>
-  <div class="side-group">
-    <div class="side-head">DAT · Nintendo</div>
-    <ul>
-      <li><a href="#dat-fc" data-v="dat-fc"><span><span class="ja">ファミリーコンピュータ</span><span class="en">Family Computer</span></span><small><span class="ja">作成中</span><span class="en">WIP</span></small></a></li>
-      <li><a href="#dat-fds" data-v="dat-fds"><span><span class="ja">ディスクシステム</span><span class="en">Disk System</span></span><small><span class="ja">予定</span><span class="en">PLAN</span></small></a></li>
-      <li><a href="#dat-sfc" data-v="dat-sfc"><span><span class="ja">スーパーファミコン</span><span class="en">Super Famicom</span></span><small><span class="ja">予定</span><span class="en">PLAN</span></small></a></li>
-    </ul>
-  </div>
-  <div class="side-group">
-    <div class="side-head">Support</div>
-    <ul>
-      <li><a href="#support" data-v="support"><span><span class="ja">寄付で支援する</span><span class="en">Donate</span></span><small>♥</small></a></li>
-    </ul>
-  </div>
-</aside>
-</div>
-
 <footer>
-  <div class="wrap">
-    <span>© 2026 JPEmu Project</span>
-    <span><span class="ja">ROMファイルは配布していません。</span><span class="en">No ROM files are distributed.</span></span>
-  </div>
+  <div class="fname">JPEmu Project</div>
+  <div><span class="ja">このサイトではROMファイルやBIOSを配布していません。ゲーム名・商標は各権利者に帰属します。</span><span class="en">No ROM or BIOS files are distributed here. Game titles and trademarks belong to their owners.</span></div>
+  <div>© 2026 JPEmu Project</div>
 </footer>
 </div>
 
 <script>
 (function(){
-  var app=document.getElementById('app');
+  var app=document.getElementById('app'), body=document.body;
   function setLang(l){
     app.dataset.lang=l; document.documentElement.lang=l;
     document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});
     try{localStorage.setItem('lang',l)}catch(e){}
   }
   var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
-  setLang(saved || ((navigator.language||'ja').toLowerCase().indexOf('ja')===0?'ja':'en'));
+  setLang(saved||((navigator.language||'ja').toLowerCase().indexOf('ja')===0?'ja':'en'));
   document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set)})});
 
-  function show(v){
-    if(!document.getElementById('v-'+v)) v='home';
-    document.querySelectorAll('.view').forEach(function(s){s.classList.toggle('show',s.id==='v-'+v)});
-    document.querySelectorAll('aside a').forEach(function(a){
-      var on=a.dataset.v===v; a.classList.toggle('on',on);
-      if(on) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
-    });
+  // menu/text turn dark once the hero has scrolled away; highlight the section in view
+  var hero=document.getElementById('top'), links=[].slice.call(document.querySelectorAll('nav.side a'));
+  function onScroll(){
+    body.classList.toggle('past', window.scrollY > hero.offsetHeight - 120);
+    var cur=null;
+    links.forEach(function(a){var s=document.querySelector(a.getAttribute('href')); if(s && s.getBoundingClientRect().top < innerHeight*0.4) cur=a;});
+    links.forEach(function(a){a.classList.toggle('on',a===cur)});
   }
-  function route(){ show((location.hash||'#home').slice(1)); }
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a[href^="#"]'); if(!a) return;
-    e.preventDefault(); var v=a.getAttribute('href').slice(1);
-    try{history.replaceState(null,'','#'+v)}catch(err){}
-    show(v); window.scrollTo(0,0);
-  });
-  window.addEventListener('hashchange',route);
-  route();
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  var btn=document.querySelector('.menu-btn');
+  btn.addEventListener('click',function(){var o=body.classList.toggle('open'); btn.setAttribute('aria-expanded',o); btn.textContent=o?'CLOSE':'MENU';});
+  links.forEach(function(a){a.addEventListener('click',function(){body.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.textContent='MENU';})});
 })();
 </script>
 </body>
