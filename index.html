@@ -37,7 +37,7 @@ a{color:inherit}
 .hero-copy p:last-child{margin:14px 0 0;font-size:14px;opacity:.85}
 
 /* the real main window, overlapping into the white area below */
-.hero-shot{position:relative;z-index:1;display:block;width:min(980px,calc(100vw - 480px));margin:6vh auto -140px;
+.hero-shot{position:relative;z-index:1;display:block;width:min(30vw,52vh,440px);margin:6vh auto -70px;
   border-radius:8px;overflow:hidden;box-shadow:0 30px 70px rgba(0,15,40,.45),0 0 0 1px rgba(255,255,255,.08)}
 .hero-shot img{display:block;width:100%;height:auto}
 
@@ -81,7 +81,7 @@ section.sec{max-width:880px;margin:0 auto;padding:130px 0 40px}
 .sec-head p{margin:10px 0 0;font-size:12px;letter-spacing:.3em;color:var(--copper)}
 .lead{max-width:36em;margin:0 auto 48px;text-align:center;color:var(--sub)}
 
-.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;margin:0 auto;padding-top:220px !important;padding:0;list-style:none;max-width:880px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;margin:0 auto;padding-top:150px !important;padding:0;list-style:none;max-width:880px}
 .feat li{text-align:center}
 .feat b{display:block;font:400 22px var(--f-serif);letter-spacing:.1em;color:var(--copper);margin-bottom:6px}
 .feat strong{display:block;font-weight:500;margin-bottom:6px}
@@ -150,8 +150,8 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   nav.side ul{gap:14px;text-align:center}
   nav.side a,nav.side a.dark{color:var(--ink);text-shadow:none;font-size:14px}
   .hero{padding-top:110px}
-  .hero-shot{width:calc(100vw - 40px);margin-bottom:-60px;border-radius:5px}
-  .feat{padding-top:120px !important}
+  .hero-shot{width:min(78vw,400px);margin-bottom:-50px;border-radius:5px}
+  .feat{padding-top:110px !important}
   .feat{grid-template-columns:1fr;gap:32px}
   .shots{grid-template-columns:1fr}
   .tiers{grid-template-columns:repeat(2,1fr)}
@@ -197,9 +197,9 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   </div>
   <div class="hero-copy">
     <p class="big"><span class="ja">手元のゲームを、正しい名前で。</span><span class="en">Your games, properly named.</span></p>
-    <p><span class="ja">JPEmu Renamer は、No-Intro のリネーム機能と RetroArch の内蔵コア機能を備えた、オールインワンの Windows 用エミュレーターランチャーです。</span><span class="en">JPEmu Renamer is an all-in-one emulator launcher for Windows, combining No-Intro renaming with RetroArch's built-in cores.</span></p>
+    <p><span class="ja">No-Intro のリネーム機能<br>RetroArch の内蔵コア機能<br>オールインワン Windows 用エミュレーターランチャー</span><span class="en">No-Intro renaming<br>RetroArch built-in cores<br>An all-in-one emulator launcher for Windows</span></p>
   </div>
-  <a class="hero-shot" href="img/main.jpg" target="_blank" rel="noopener"><img src="img/main.jpg" width="1280" height="800" alt="JPEmu Renamer のメイン画面。ゲーム一覧と、ドンキーコングのデモが流れる自動プレビュー"></a>
+  <a class="hero-shot" href="img/aqua.jpg" target="_blank" rel="noopener"><img src="img/aqua.jpg" width="1280" height="800" alt="JPEmu Renamer のメイン画面（アクアテーマ）。ゲーム一覧と、ドンキーコングのデモが流れる自動プレビュー"></a>
 </header>
 
 <main>
