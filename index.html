@@ -26,29 +26,20 @@ a{color:inherit}
 [data-lang="en"] .ja,[data-lang="ja"] .en{display:none}
 
 /* ---------- hero ---------- */
-.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;color:#fff;
+.hero{position:relative;min-height:100vh;padding:13vh 0 0;color:#fff;text-align:center;
   background:
     radial-gradient(ellipse 60% 45% at 50% 62%,rgba(255,236,200,.22),transparent 70%),
     linear-gradient(180deg,var(--sky-3) 0%,var(--sky-2) 38%,var(--sky-1) 100%)}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;
-  background:linear-gradient(180deg,transparent,rgba(5,20,40,.35))}
-.hero-title{position:absolute;top:15%;left:0;right:0;text-align:center;z-index:2}
 .hero-title small{display:block;font:400 12px var(--f-label);letter-spacing:.5em;opacity:.9;padding-left:.5em}
 .hero-title h1{margin:10px 0 0;font:300 clamp(40px,6.4vw,76px)/1.1 var(--f-serif);letter-spacing:.14em;padding-left:.14em}
+.hero-copy{max-width:34em;margin:5vh auto 0;padding:0 20px}
+.hero-copy .big{margin:0;font:400 clamp(18px,2.1vw,24px)/1.9 var(--f-body);letter-spacing:.12em}
+.hero-copy p:last-child{margin:14px 0 0;font-size:14px;opacity:.85}
 
-/* the app's TV-style preview as the centerpiece */
-.tv{position:absolute;left:50%;top:auto;bottom:9vh;transform:translateX(-50%);width:min(30vw,44vh,400px);z-index:1;
-  filter:drop-shadow(0 30px 50px rgba(0,10,30,.55))}
-.tv .body{background:#141518;border-radius:14px;padding:12px 12px 0;border:1px solid #2a2c31}
-.tv .scr{aspect-ratio:4/3;background:#000;border-radius:3px;display:grid;grid-template-rows:repeat(4,1fr);gap:8px;padding:12px 0;overflow:hidden}
-.tv .scr i{display:block;animation:fade 6s ease-in-out infinite alternate}
-.tv .scr i:nth-child(1){background:linear-gradient(90deg,#000 6%,#bfe0ff 55%,#e6f3ff)}
-.tv .scr i:nth-child(2){background:linear-gradient(90deg,#000 6%,#e3102b 55%,#ff1a3a);animation-delay:.4s}
-.tv .scr i:nth-child(3){background:linear-gradient(90deg,#000 6%,#00c98f 55%,#00f0b0);animation-delay:.8s}
-.tv .scr i:nth-child(4){background:linear-gradient(90deg,#000 6%,#1747d8 55%,#2a6cff);animation-delay:1.2s}
-@keyframes fade{from{opacity:.75}to{opacity:1}}
-.tv .band{height:30px;margin:12px -12px 0;border-radius:0 0 13px 13px;background:linear-gradient(#d4d7db,#aeb2b7);
-  display:flex;align-items:center;justify-content:center;font:500 10px var(--f-label);letter-spacing:.4em;color:#3a3d42}
+/* the real main window, overlapping into the white area below */
+.hero-shot{position:relative;z-index:1;display:block;width:min(980px,calc(100vw - 480px));margin:6vh auto -140px;
+  border-radius:8px;overflow:hidden;box-shadow:0 30px 70px rgba(0,15,40,.45),0 0 0 1px rgba(255,255,255,.08)}
+.hero-shot img{display:block;width:100%;height:auto}
 
 .emblem{position:fixed;top:28px;left:34px;z-index:30;width:72px;height:72px;border-radius:50%;
   border:1px solid currentColor;display:grid;place-items:center;text-decoration:none;
@@ -90,11 +81,7 @@ section.sec{max-width:880px;margin:0 auto;padding:130px 0 40px}
 .sec-head p{margin:10px 0 0;font-size:12px;letter-spacing:.3em;color:var(--copper)}
 .lead{max-width:36em;margin:0 auto 48px;text-align:center;color:var(--sub)}
 
-.intro{text-align:center;max-width:40em;margin:0 auto;padding-top:120px}
-.intro p{margin:0 0 1.2em;color:var(--sub)}
-.intro .big{font:400 clamp(20px,2.4vw,26px)/1.8 var(--f-body);color:var(--ink);letter-spacing:.1em}
-
-.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;margin:72px auto 0;padding:0;list-style:none;max-width:880px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;margin:0 auto;padding-top:220px !important;padding:0;list-style:none;max-width:880px}
 .feat li{text-align:center}
 .feat b{display:block;font:400 22px var(--f-serif);letter-spacing:.1em;color:var(--copper);margin-bottom:6px}
 .feat strong{display:block;font-weight:500;margin-bottom:6px}
@@ -116,8 +103,9 @@ dl.spec dd{margin:0;color:var(--sub)}
 
 .shots{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
 .shots figure{margin:0}
-.shots .ph{aspect-ratio:16/10;background:var(--paper2);border:1px solid var(--line);display:grid;place-items:center;
-  font:400 italic 20px var(--f-serif);color:#b4aea5;letter-spacing:.1em}
+.shots a{display:block;border:1px solid var(--line);overflow:hidden}
+.shots img{display:block;width:100%;height:auto;transition:transform .5s}
+.shots a:hover img{transform:scale(1.02)}
 .shots figcaption{margin-top:10px;font-size:12px;color:var(--sub);text-align:center}
 
 ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:0}
@@ -161,7 +149,9 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   body.open .menu-btn{color:var(--ink)}
   nav.side ul{gap:14px;text-align:center}
   nav.side a,body.past nav.side a{color:var(--ink);text-shadow:none;font-size:14px}
-  .tv{width:min(72vw,44vh,360px);bottom:12vh}
+  .hero{padding-top:110px}
+  .hero-shot{width:calc(100vw - 40px);margin-bottom:-60px;border-radius:5px}
+  .feat{padding-top:120px !important}
   .feat{grid-template-columns:1fr;gap:32px}
   .shots{grid-template-columns:1fr}
   .tiers{grid-template-columns:repeat(2,1fr)}
@@ -172,7 +162,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   dl.spec dd{margin-bottom:12px}
   ol.steps li{grid-template-columns:52px 1fr;gap:12px}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tv .scr i{animation:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.shots img{transition:none}}
 </style>
 </head>
 <body>
@@ -205,14 +195,14 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
     <small>The Emulator Launcher</small>
     <h1>JPEmu Renamer</h1>
   </div>
-  <div class="tv" aria-hidden="true"><div class="body"><div class="scr"><i></i><i></i><i></i><i></i></div><div class="band">JPEmu</div></div></div>
-</header>
-
-<main>
-  <div class="intro">
+  <div class="hero-copy">
     <p class="big"><span class="ja">手元のゲームを、正しい名前で。<br>そのまま遊べる。</span><span class="en">Your games, properly named.<br>Ready to play.</span></p>
     <p><span class="ja">JPEmu Renamer は、No-Intro に対応するリネーム機能を持った、内蔵コアでそのまま遊べる無料の Windows 用エミュレーターランチャーです。</span><span class="en">JPEmu Renamer is a free emulator launcher for Windows with a No-Intro compatible renamer and built-in cores that let you play right away.</span></p>
   </div>
+  <a class="hero-shot" href="img/main.jpg" target="_blank" rel="noopener"><img src="img/main.jpg" width="1280" height="800" alt="JPEmu Renamer のメイン画面。ゲーム一覧と、ドンキーコングのデモが流れる自動プレビュー"></a>
+</header>
+
+<main>
   <ul class="feat">
     <li><b>Rename</b><strong><span class="ja">DATで正しい名前に</span><span class="en">Correct names from a DAT</span></strong><span><span class="ja">No-Intro / OfflineList のDATとCRC32で照合。実行後も「元に戻す」で戻せます。</span><span class="en">Matched by CRC32 against No-Intro / OfflineList DATs. Every run can be undone.</span></span></li>
     <li><b>Play</b><strong><span class="ja">内蔵コアですぐ遊べる</span><span class="en">Built-in cores</span></strong><span><span class="ja">libretro コアをアプリから一括ダウンロード。テレビ風の画面でデモも流れます。</span><span class="en">Download libretro cores in the app. Demos play on a TV-style preview.</span></span></li>
@@ -226,7 +216,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
       <a class="btn" aria-disabled="true" href="#download"><span class="ja">準備中</span><span class="en">COMING SOON</span></a>
     </div>
     <div class="dl-card">
-      <div><h3><span class="ja">ファミコン DAT</span><span class="en">Famicom DAT</span></h3><p><span class="ja">日本語タイトル・発売日・価格・ジャンル入り 1,053本（OfflineList形式）</span><span class="en">1,053 titles in Japanese with date, price and genre (OfflineList format)</span></p></div>
+      <div><h3><span class="ja">各種 DAT</span><span class="en">DAT files</span></h3><p><span class="ja">日本語タイトル・発売日・価格・ジャンル入りのDATを、ファミコンから機種ごとに順次公開します（OfflineList形式）</span><span class="en">DATs with Japanese titles, release dates, prices and genres, released system by system starting with the Famicom (OfflineList format)</span></p></div>
       <a class="btn" aria-disabled="true" href="#download"><span class="ja">準備中</span><span class="en">COMING SOON</span></a>
     </div>
     <dl class="spec">
@@ -239,10 +229,10 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   <section class="sec" id="screenshots">
     <div class="sec-head"><h2>Screenshots</h2><p>スクリーンショット</p></div>
     <div class="shots">
-      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">ゲーム一覧とテレビ風プレビュー</span><span class="en">Game list and TV-style preview</span></figcaption></figure>
-      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">DATでリネーム</span><span class="en">Renaming with a DAT</span></figcaption></figure>
-      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">内蔵コアでプレイ</span><span class="en">Playing with a built-in core</span></figcaption></figure>
-      <figure><div class="ph">Coming soon</div><figcaption><span class="ja">6つのテーマ</span><span class="en">Six themes</span></figcaption></figure>
+      <figure><a href="img/main.jpg" target="_blank" rel="noopener"><img src="img/main.jpg" width="1280" height="800" loading="lazy" alt="ゲーム一覧と自動プレビュー"></a><figcaption><span class="ja">ゲーム一覧と自動プレビュー</span><span class="en">Game list and auto preview</span></figcaption></figure>
+      <figure><a href="img/rename.jpg" target="_blank" rel="noopener"><img src="img/rename.jpg" width="1280" height="800" loading="lazy" alt="DATでリネーム"></a><figcaption><span class="ja">DATでリネーム（変更前と変更後を確認）</span><span class="en">Renaming with a DAT, before and after</span></figcaption></figure>
+      <figure><a href="img/play.jpg" target="_blank" rel="noopener"><img src="img/play.jpg" width="895" height="759" loading="lazy" alt="内蔵コアでプレイ"></a><figcaption><span class="ja">内蔵コアでプレイ</span><span class="en">Playing with a built-in core</span></figcaption></figure>
+      <figure><a href="img/dark.jpg" target="_blank" rel="noopener"><img src="img/dark.jpg" width="1280" height="800" loading="lazy" alt="ダークテーマ"></a><figcaption><span class="ja">ダークテーマ（全6テーマ）</span><span class="en">Dark theme (one of six)</span></figcaption></figure>
     </div>
   </section>
 
