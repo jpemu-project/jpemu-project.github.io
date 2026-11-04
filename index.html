@@ -295,9 +295,11 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set)})});
 
   // menu/text turn dark once the hero has scrolled away; highlight the section in view
-  var hero=document.getElementById('top'), links=[].slice.call(document.querySelectorAll('nav.side a'));
+  var hero=document.getElementById('top'), nav=document.querySelector('nav.side'), links=[].slice.call(document.querySelectorAll('nav.side a'));
   function onScroll(){
-    body.classList.toggle('past', window.scrollY > hero.offsetHeight - 120);
+    // switch once the blue area has left the middle of the menu, so the menu is never white on white
+    var r=nav.getBoundingClientRect(), mid=r.height ? r.top + r.height/2 : 120;
+    body.classList.toggle('past', hero.getBoundingClientRect().bottom < mid);
     var cur=null;
     links.forEach(function(a){var s=document.querySelector(a.getAttribute('href')); if(s && s.getBoundingClientRect().top < innerHeight*0.4) cur=a;});
     links.forEach(function(a){a.classList.toggle('on',a===cur)});
