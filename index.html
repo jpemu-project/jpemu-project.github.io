@@ -119,6 +119,12 @@ dl.spec dd{margin:0;color:var(--sub)}
 .shots img{display:block;width:100%;height:auto;transition:transform .5s}
 .shots a:hover img{transform:scale(1.02)}
 .shots figcaption{margin-top:10px;font-size:12px;color:var(--sub);text-align:center}
+.systems{margin:56px 0 0;border-top:1px solid var(--line);padding-top:32px}
+.systems h3{margin:0 0 18px;text-align:center;font:500 11px var(--f-label);letter-spacing:.3em;color:var(--copper)}
+.systems ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 24px;font-size:13px;color:var(--sub)}
+.systems li{border-bottom:1px dotted var(--line);padding:4px 0}
+.systems li i{font-style:normal;color:var(--copper);margin-left:4px}
+.systems .note{margin:14px 0 0;text-align:center;font-size:12px;color:var(--sub)}
 
 ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:0}
 ol.steps li{counter-increment:s;display:grid;grid-template-columns:80px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line)}
@@ -258,6 +264,39 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
       <figure><a href="img/play.jpg" target="_blank" rel="noopener"><img src="img/play.jpg" width="895" height="759" loading="lazy" alt="内蔵コアでプレイ"></a><figcaption><span class="ja">内蔵コアでプレイ</span><span class="en">Playing with a built-in core</span></figcaption></figure>
       <figure><a href="img/dark.jpg" target="_blank" rel="noopener"><img src="img/dark.jpg" width="1280" height="800" loading="lazy" alt="ダークテーマ"></a><figcaption><span class="ja">ダークテーマ（全6テーマ）</span><span class="en">Dark theme (one of six)</span></figcaption></figure>
     </div>
+    <div class="systems">
+      <h3><span class="ja">対応ゲーム機（全27機種）</span><span class="en">SUPPORTED SYSTEMS (27)</span></h3>
+      <ul>
+        <li><span class="ja">ファミコン</span><span class="en">Famicom / NES</span></li>
+        <li><span class="ja">ディスクシステム</span><span class="en">Famicom Disk System</span></li>
+        <li><span class="ja">スーパーファミコン</span><span class="en">Super Famicom / SNES</span></li>
+        <li><span class="ja">NINTENDO64</span><span class="en">Nintendo 64</span></li>
+        <li><span class="ja">ゲームボーイ</span><span class="en">Game Boy</span></li>
+        <li><span class="ja">ゲームボーイカラー</span><span class="en">Game Boy Color</span></li>
+        <li><span class="ja">ゲームボーイアドバンス</span><span class="en">Game Boy Advance</span></li>
+        <li><span class="ja">バーチャルボーイ</span><span class="en">Virtual Boy</span></li>
+        <li><span class="ja">ニンテンドーDS</span><span class="en">Nintendo DS</span></li>
+        <li><span class="ja">ニンテンドーDSiウェア</span><span class="en">Nintendo DSiWare</span><i>*</i></li>
+        <li><span class="ja">ニンテンドー3DS</span><span class="en">Nintendo 3DS</span><i>*</i></li>
+        <li><span class="ja">SG-1000</span><span class="en">SG-1000</span></li>
+        <li><span class="ja">マスターシステム</span><span class="en">Master System</span></li>
+        <li><span class="ja">メガドライブ</span><span class="en">Mega Drive / Genesis</span></li>
+        <li><span class="ja">スーパー32X</span><span class="en">Super 32X</span><i>*</i></li>
+        <li><span class="ja">ゲームギア</span><span class="en">Game Gear</span></li>
+        <li><span class="ja">メガCD</span><span class="en">Mega-CD / Sega CD</span></li>
+        <li><span class="ja">セガサターン</span><span class="en">Sega Saturn</span></li>
+        <li><span class="ja">PCエンジン</span><span class="en">PC Engine / TurboGrafx-16</span></li>
+        <li><span class="ja">PCエンジン スーパーグラフィックス</span><span class="en">PC Engine SuperGrafx</span><i>*</i></li>
+        <li><span class="ja">PCエンジン CD-ROM²</span><span class="en">PC Engine CD-ROM²</span></li>
+        <li><span class="ja">ワンダースワン</span><span class="en">WonderSwan</span></li>
+        <li><span class="ja">ワンダースワンカラー</span><span class="en">WonderSwan Color</span></li>
+        <li><span class="ja">ネオジオポケット</span><span class="en">Neo Geo Pocket</span></li>
+        <li><span class="ja">ネオジオポケットカラー</span><span class="en">Neo Geo Pocket Color</span></li>
+        <li><span class="ja">ネオジオ</span><span class="en">Neo Geo</span></li>
+        <li><span class="ja">プレイステーション</span><span class="en">PlayStation</span></li>
+      </ul>
+      <p class="note"><span class="ja">* は次のバージョン（1.1）から対応します。</span><span class="en">* Supported from the next version (1.1).</span></p>
+    </div>
   </section>
 
   <section class="sec" id="manual">
@@ -280,7 +319,6 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   <section class="sec" id="links">
     <div class="sec-head"><h2>Links</h2><p>リンク</p></div>
     <ul class="links">
-      <li><a href="https://github.com/jpemu-project/JPEmu-Renamer" target="_blank" rel="noopener"><strong>GitHub</strong><span><span class="ja">ソースコード</span><span class="en">Source code</span></span></a></li>
       <li><a href="https://no-intro.org/" target="_blank" rel="noopener"><strong>No-Intro</strong><span><span class="ja">ROMの照合用データベース</span><span class="en">ROM preservation database</span></span></a></li>
       <li><a href="https://www.libretro.com/" target="_blank" rel="noopener"><strong>libretro</strong><span><span class="ja">内蔵コアの提供元</span><span class="en">Home of the built-in cores</span></span></a></li>
     </ul>
