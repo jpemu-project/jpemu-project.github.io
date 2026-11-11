@@ -60,7 +60,15 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:2;letter-spacing:.04em}
 a{color:inherit}
 :focus-visible{outline:1px solid var(--copper);outline-offset:4px}
-[data-lang="en"] .ja,[data-lang="ja"] .en{display:none}
+/* Japanese shows .ja; every other language shows .en (English, or its translation from lang.js) */
+#app:not([data-lang="ja"]) .ja,[data-lang="ja"] .en{display:none}
+/* fonts for scripts the Japanese font does not cover well */
+html:not([lang="ja"]):not([lang="en"]){--f-body:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+html[lang="zh-Hans"]{--f-body:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;--f-label:"Montserrat","Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;--f-serif:"Cormorant Garamond","Microsoft YaHei","PingFang SC","Noto Sans SC",serif}
+html[lang="zh-Hant"]{--f-body:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;--f-label:"Montserrat","Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;--f-serif:"Cormorant Garamond","Microsoft JhengHei","PingFang TC","Noto Sans TC",serif}
+html[lang="ko"]{--f-body:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;--f-label:"Montserrat","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;--f-serif:"Cormorant Garamond","Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",serif}
+html[lang="th"] #app *{letter-spacing:normal}
+html[lang="th"]{--f-body:"Leelawadee UI","Thonburi","Noto Sans Thai",sans-serif;--f-label:"Montserrat","Leelawadee UI","Thonburi","Noto Sans Thai",sans-serif;--f-serif:"Cormorant Garamond","Leelawadee UI","Thonburi","Noto Sans Thai",serif}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100vh;padding:13vh 0 0;color:#fff;text-align:center;
@@ -103,11 +111,14 @@ nav.side a:hover,nav.side a.on{color:var(--copper)}
 nav.side a.dark{color:var(--ink);text-shadow:none}
 nav.side a.dark:hover,nav.side a.dark.on{color:var(--copper)}
 
-.lang{position:fixed;top:30px;right:34px;z-index:30;display:flex;gap:14px}
-.lang button{background:none;border:0;padding:0;cursor:pointer;font:500 11px var(--f-label);letter-spacing:.2em;color:rgba(255,255,255,.6)}
-.lang button[aria-pressed="true"]{color:#fff;border-bottom:1px solid #fff}
-.lang.dark button{color:var(--sub)}
-.lang.dark button[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
+.lang{position:fixed;top:26px;right:34px;z-index:30;display:flex;align-items:center;gap:8px;color:#fff;transition:color .3s}
+.lang svg{width:14px;height:14px;flex:none}
+.lang select{appearance:none;-webkit-appearance:none;background:transparent;border:0;border-bottom:1px solid currentColor;border-radius:0;
+  padding:3px 16px 3px 0;cursor:pointer;color:inherit;font:500 11px "Montserrat","Segoe UI",system-ui,sans-serif;letter-spacing:.1em;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(-45deg,transparent 50%,currentColor 50%);
+  background-position:right 5px center,right 1px center;background-size:4px 4px;background-repeat:no-repeat}
+.lang select option{color:#1f2328;background:#fff}
+.lang.dark{color:var(--ink)}
 
 .vcopy{position:fixed;right:30px;top:50%;transform:translateY(-50%);z-index:20;writing-mode:vertical-rl;
   font:400 10px var(--f-label);letter-spacing:.2em;color:rgba(255,255,255,.85);transition:color .3s}
@@ -194,7 +205,6 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   .vcopy{display:none}
   .emblem{top:16px;left:16px;width:58px;height:58px;font-size:14px}
   .lang{top:auto;bottom:18px;left:18px;right:auto}
-  .lang:not(.dark) button{color:rgba(255,255,255,.7)}
   .menu-btn{display:block;position:fixed;top:24px;right:18px;z-index:40;background:none;border:0;cursor:pointer;
     font:500 11px var(--f-label);letter-spacing:.24em;color:#fff;padding:8px 0}
   .menu-btn.dark{color:var(--ink)}
@@ -240,10 +250,27 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   </ul>
 </nav>
 
-<div class="lang" role="group" aria-label="Language">
-  <button type="button" data-set="ja" aria-pressed="true">JA</button>
-  <button type="button" data-set="en" aria-pressed="false">EN</button>
-</div>
+<label class="lang">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2.2 2.4-2.2 10.6 0 13M8 1.5c2.2 2.4 2.2 10.6 0 13"/></svg>
+  <select aria-label="Language / 言語">
+    <option value="ja">日本語</option>
+    <option value="en">English</option>
+    <option value="zh-Hans">简体中文</option>
+    <option value="zh-Hant">繁體中文</option>
+    <option value="ko">한국어</option>
+    <option value="fr">Français</option>
+    <option value="it">Italiano</option>
+    <option value="es">Español</option>
+    <option value="pt">Português</option>
+    <option value="ru">Русский</option>
+    <option value="de">Deutsch</option>
+    <option value="pl">Polski</option>
+    <option value="tr">Türkçe</option>
+    <option value="id">Bahasa Indonesia</option>
+    <option value="vi">Tiếng Việt</option>
+    <option value="th">ไทย</option>
+  </select>
+</label>
 <div class="vcopy" aria-hidden="true">© 2026 JPEMU PROJECT</div>
 <a class="cta" href="#download">DOWNLOAD
   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg></a>
@@ -284,7 +311,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
     </div>
     <div class="dl-card">
       <div><h3><span class="ja">各種 DAT(日本語)</span><span class="en">DAT files (Japanese)</span> v1.0.2 <span class="rel-date">(2026.11.09)</span> <span class="new-badge">New</span></h3><p><span class="ja">日本語タイトル・発売日・価格・ジャンル入りのDATを、順次公開します（OfflineList形式）</span><span class="en">DATs with Japanese titles, release dates, prices and genres, released one by one (OfflineList format)</span></p>
-        <p><span class="ja">v1.0.2：22機種・6,968本を収録。ゲームボーイアドバンス、ニンテンドーDS、DSiウェア、ニンテンドー3DS、プレイステーションは順次追加予定です。</span><span class="en">v1.0.2: 22 systems, 6,968 games. Game Boy Advance, Nintendo DS, DSiWare, Nintendo 3DS and PlayStation are coming later.</span></p></div>
+        <p>v1.0.2<span class="ja">：22機種・6,968本を収録。ゲームボーイアドバンス、ニンテンドーDS、DSiウェア、ニンテンドー3DS、プレイステーションは順次追加予定です。</span><span class="en">: 22 systems, 6,968 games. Game Boy Advance, Nintendo DS, DSiWare, Nintendo 3DS and PlayStation are coming later.</span></p></div>
       <a class="btn fill" href="dat/JPEmu-DAT-JP-v1.0.2.zip" download>DOWNLOAD <span class="ja">(ZIP)</span><span class="en">(ZIP)</span></a>
     </div>
     <dl class="spec">
@@ -385,17 +412,54 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
 </footer>
 </div>
 
+<script src="lang.js"></script>
 <script>
 (function(){
   var app=document.getElementById('app'), body=document.body;
+  var sel=document.querySelector('.lang select');
+  var LANGS=[].map.call(sel.options,function(o){return o.value});
+  var DICT=window.JPEMU_I18N||{};
+  var SHORT={'zh-Hans':'zs','zh-Hant':'zt'};
+
+  // remember the English text of every .en span, so it can be translated and restored
+  var EN=[].slice.call(document.querySelectorAll('#app .en'));
+  EN.forEach(function(s){s.dataset.src=s.innerHTML});
+
+  // exact text first; otherwise numbers that stand alone (counts, versions) become {0}, {1}...
+  function tr(src,k){
+    var d=DICT[src]; if(d&&d[k]) return d[k];
+    var nums=[];
+    var key=src.replace(/\d[\d,.]*\d|\d/g,function(m,i,s){
+      if(/[A-Za-z]/.test(s.charAt(i-1)||'')||/[A-Za-z]/.test(s.charAt(i+m.length)||'')) return m;
+      nums.push(m); return '{'+(nums.length-1)+'}';
+    });
+    d=DICT[key]; if(d&&d[k]) return d[k].replace(/\{(\d+)\}/g,function(_,n){return nums[n]});
+    return src;
+  }
+
   function setLang(l){
-    app.dataset.lang=l; document.documentElement.lang=l;
-    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});
+    if(LANGS.indexOf(l)<0) l='en';
+    app.dataset.lang=l; document.documentElement.lang=l; sel.value=l;
+    var k=SHORT[l]||l;
+    EN.forEach(function(s){s.innerHTML=(l==='ja'||l==='en')?s.dataset.src:tr(s.dataset.src,k)});
     try{localStorage.setItem('lang',l)}catch(e){}
   }
+
+  // the browser's preferred languages, in order; anything we do not have falls back to English
+  function pick(){
+    var list=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en'];
+    for(var i=0;i<list.length;i++){
+      var t=String(list[i]).toLowerCase(), base=t.split('-')[0];
+      if(base==='zh') return /hant|tw|hk|mo/.test(t)?'zh-Hant':'zh-Hans';
+      if(base==='in') base='id';
+      if(LANGS.indexOf(base)>=0) return base;
+    }
+    return 'en';
+  }
+
   var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
-  setLang(saved||((navigator.language||'ja').toLowerCase().indexOf('ja')===0?'ja':'en'));
-  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set)})});
+  setLang(saved&&LANGS.indexOf(saved)>=0?saved:pick());
+  sel.addEventListener('change',function(){setLang(sel.value)});
 
   // each fixed label turns dark on its own once the blue hero is no longer behind it; highlight the section in view
   var hero=document.getElementById('top'), links=[].slice.call(document.querySelectorAll('nav.side a'));
