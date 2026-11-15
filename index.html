@@ -203,7 +203,11 @@ ol.steps span{font-size:13px;color:var(--sub)}
 .links strong{font:400 21px var(--f-serif);letter-spacing:.06em;transition:color .2s}
 .links span{font-size:13px;color:var(--sub);align-self:center}
 
-.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 48px;padding:0;list-style:none;border:1px solid var(--line)}
+.donate-opt{text-align:center;border-top:1px solid var(--line);padding:40px 0 8px}
+.donate-opt + .donate-opt{margin-top:48px}
+.donate-opt h3{margin:0;font:400 26px var(--f-serif);letter-spacing:.08em}
+.donate-opt p{margin:6px 0 24px;font-size:13px;color:var(--sub)}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 32px;text-align:center;padding:0;list-style:none;border:1px solid var(--line)}
 .tiers li{padding:26px 14px;text-align:center;border-left:1px solid var(--line)}
 .tiers li:first-child{border-left:0}
 .tiers small{display:block;font:500 10px var(--f-label);letter-spacing:.25em;color:var(--copper)}
@@ -406,6 +410,14 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
   <section class="sec" id="donate">
     <div class="sec-head"><h2>Donate</h2><p>寄付</p></div>
     <p class="lead"><span class="ja">いただいたご支援は、検証用のソフトや吸い出し機材の購入、開発の継続に使わせていただきます。応援ありがとうございます。</span><span class="en">Your support goes toward cartridges and dumping hardware for verification, and continued development. Thank you.</span></p>
+    <div class="donate-opt">
+      <h3>Ko-fi</h3>
+      <p><span class="ja">1回 ¥500 から寄付できます。毎月の寄付も選べます。</span><span class="en">Donate from ¥500 at a time. Monthly donations are also available.</span></p>
+      <a class="btn fill" href="https://ko-fi.com/jpemu" target="_blank" rel="noopener"><span class="ja">Ko-fi で寄付する</span><span class="en">DONATE ON KO-FI</span></a>
+    </div>
+    <div class="donate-opt">
+      <h3>GitHub Sponsors</h3>
+      <p><span class="ja">GitHub アカウントでの寄付です。下の特典は GitHub Sponsors のものです。</span><span class="en">Donate with your GitHub account. The rewards below are for GitHub Sponsors.</span></p>
     <ul class="tiers">
       <li><small><span class="ja">毎月</span><span class="en">MONTHLY</span></small><b>$3</b><span><span class="ja">スポンサーバッジ</span><span class="en">Sponsor badge</span></span></li>
       <li><small><span class="ja">毎月</span><span class="en">MONTHLY</span></small><b>$5</b><span><span class="ja">READMEにお名前</span><span class="en">Name in README</span></span></li>
@@ -415,6 +427,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
     <!-- GitHub Sponsors の審査が終わったら、下の行を元に戻す：
     <div class="center"><a class="btn fill" href="https://github.com/sponsors/jpemu-project" target="_blank" rel="noopener">GITHUB SPONSORS</a></div> -->
     <div class="center"><a class="btn" aria-disabled="true" href="#donate">GITHUB SPONSORS <span class="ja">(準備中)</span><span class="en">(COMING SOON)</span></a></div>
+    </div>
   </section>
 </main>
 
