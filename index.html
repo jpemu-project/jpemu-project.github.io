@@ -196,6 +196,9 @@ ol.steps strong{display:block;font-weight:500}
 ol.steps span{font-size:13px;color:var(--sub)}
 .note{margin:28px 0 0;text-align:center;font-size:13px;color:var(--sub)}
 .center{text-align:center}
+.guide-link{margin-top:10px}
+.guide-link a{color:var(--copper);text-decoration:none;border-bottom:1px solid currentColor}
+.guide-link a:hover{color:var(--copper-dark)}
 
 .links{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .links a{display:grid;grid-template-columns:1fr auto;gap:16px;padding:22px 4px;border-bottom:1px solid var(--line);text-decoration:none}
@@ -391,6 +394,7 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
       <li><div><strong><span class="ja">遊ぶ</span><span class="en">Play</span></strong><span><span class="ja">コアをダウンロードして、ゲームをダブルクリック（またはEnter）で起動します。</span><span class="en">Download a core, then double-click a game (or press Enter).</span></span></div></li>
     </ol>
     <p class="note"><span class="ja">くわしい使い方は、アプリの「ヘルプ」または F1 キーで開くマニュアルをご覧ください。</span><span class="en">For full details, open the manual from Help or with the F1 key in the app.</span></p>
+    <p class="note guide-link"><a class="guide-a" href="en/guide/"><span class="ja">ガイドを見る（DATでROMの名前を整える方法・日本語DATの使い方）</span><span class="en">Read the guides: renaming ROMs with a DAT, and using the Japanese DATs</span> →</a></p>
   </section>
 
   <section class="sec" id="feedback">
@@ -469,6 +473,8 @@ footer .fname{font:300 26px var(--f-serif);letter-spacing:.2em;color:var(--ink);
     app.dataset.lang=l; document.documentElement.lang=l; sel.value=l;
     var k=SHORT[l]||l;
     EN.forEach(function(s){s.innerHTML=(l==='ja'||l==='en')?s.dataset.src:tr(s.dataset.src,k)});
+    // the guides exist in Japanese and English only; every other language is sent to the English ones
+    document.querySelectorAll('.guide-a').forEach(function(a){a.setAttribute('href',l==='ja'?'guide/':'en/guide/')});
     try{localStorage.setItem('lang',l)}catch(e){}
   }
 
