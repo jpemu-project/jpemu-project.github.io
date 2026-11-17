@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>日本語タイトル入りDATの使い方（ファミコン・スーパーファミコンなど）｜JPEmu Renamer</title>
+<meta name="description" content="日本で発売されたゲームの日本語タイトル・発売日・価格・ジャンル入りのDATを無料で配布しています。ROMのファイル名を、日本語の正式なタイトルに整える方法を説明します。OfflineList形式。">
+<link rel="canonical" href="https://jpemu-project.github.io/guide/japanese-dat.html">
+<link rel="alternate" hreflang="ja" href="https://jpemu-project.github.io/guide/japanese-dat.html">
+<link rel="alternate" hreflang="en" href="https://jpemu-project.github.io/en/guide/japanese-dat.html">
+<link rel="alternate" hreflang="x-default" href="https://jpemu-project.github.io/en/guide/japanese-dat.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="JPEmu Renamer">
+<meta property="og:title" content="日本語タイトル入りDATの使い方">
+<meta property="og:description" content="日本で発売されたゲームの日本語タイトル・発売日・価格・ジャンル入りのDATを無料で配布しています。">
+<meta property="og:url" content="https://jpemu-project.github.io/guide/japanese-dat.html">
+<meta property="og:image" content="https://jpemu-project.github.io/img/main.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="stylesheet" href="/guide/guide.css">
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="/">JPEmu<small>RENAMER</small></a>
+  <nav>
+    <a href="/guide/">ガイド</a>
+    <a class="hide-s" href="/en/guide/japanese-dat.html" hreflang="en" lang="en">English</a>
+    <a class="dl" href="/#download">ダウンロード</a>
+  </nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/">ホーム</a> ／ <a href="/guide/">ガイド</a></p>
+  <p class="eyebrow">GUIDE</p>
+  <h1>日本語タイトル入りDATの使い方</h1>
+  <p class="lead">日本で発売されたゲームの、日本語タイトル・発売日・価格・ジャンル入りのDATを、無料で配布しています。ROMのファイル名を、日本語の正式なタイトルに整えたいときに使います。</p>
+
+  <h2>どんなDATか</h2>
+  <ul>
+    <li><strong>OfflineList形式</strong>のDATです。JPEmu Renamer や OfflineList で使えます。</li>
+    <li>タイトルは、<strong>メーカー公式サイトの表記</strong>を優先しています。公式サイトに無いものは、日本語版Wikipediaの「ゲームタイトル一覧」の表記に合わせています。</li>
+    <li>Windowsのファイル名に使えない記号（<code>\ / : * ? " &lt; &gt; |</code>）は、同じ形の全角の記号に置き換えています。</li>
+    <li>ROMやBIOSは含まれていません。名前の一覧だけです。</li>
+  </ul>
+
+  <h2>対応している機種</h2>
+  <p>ファミコン、ディスクシステム、スーパーファミコン、ゲームボーイ、ゲームボーイカラー、ゲームボーイアドバンス、バーチャルボーイ、NINTENDO 64、ニンテンドー3DS、SG-1000、マスターシステム、メガドライブ、スーパー32X、ゲームギア、メガCD、セガサターン、PCエンジン（スーパーグラフィックス・CD-ROM²を含む）、ネオジオ、ネオジオポケット、ネオジオポケットカラー、ワンダースワン、ワンダースワンカラーです。</p>
+  <p>機種は順次ふやしています。最新の機種と本数は、ZIPの中の <code>README.txt</code> に書いてあります。</p>
+
+  <h2>使い方</h2>
+  <ol class="steps">
+    <li><div><strong>DATをダウンロードする</strong><span><a href="/#download">ダウンロード欄</a>の「各種 DAT(日本語)」から、ZIPファイルをダウンロードして展開します。</span></div></li>
+    <li><div><strong>機種ごとのファイルを選ぶ</strong><span>ファイル名は、<code>JP_機種の英語名.xml</code> です（例：<code>JP_Super Famicom.xml</code> はスーパーファミコン用）。機種ごとに1つずつあります。</span></div></li>
+    <li><div><strong>機種の設定でDATを指定する</strong><span>JPEmu Renamer の「機種の設定」を開き、「DATファイル」に、その機種のDATを指定します。ROMフォルダも指定すると、照合が自動で始まります。</span></div></li>
+    <li><div><strong>リネームする</strong><span>「リネーム」タブで、「現在のファイル名」と「→ DAT上の名前」を確認して、「リネームを実行」を押します。くわしい手順は<a href="/guide/rename-roms-with-dat.html">DATでROMのファイル名を正しく整える方法</a>をご覧ください。</span></div></li>
+  </ol>
+
+  <h2>知っておいてほしいこと</h2>
+  <ul>
+    <li><strong>日本で発売されたタイトルが対象です。</strong>海外版のROMは、DATに載っていないので「DATに無し」と表示されます。</li>
+    <li><strong>ファイル名が日本語になります。</strong>Windowsのエクスプローラーでは問題なく扱えます。ファイル名を変えたくないときは、「機種の設定」の「表示名だけDATの名前にする」をオンにすると、ファイル名はそのままで、アプリの一覧の表示だけ日本語タイトルになります。</li>
+    <li><strong>まちがえても戻せます。</strong>リネームのあと、「元に戻す」で1回分をまるごと元に戻せます。</li>
+    <li><strong>ROMは、ご自身で吸い出したものをお使いください。</strong></li>
+  </ul>
+  <p class="note">DATの内容に誤りを見つけたときは、<a href="https://github.com/jpemu-project/JPEmu-Renamer/issues">GitHub</a> でお知らせください。</p>
+
+  <section class="cta">
+    <h2>日本語DATをダウンロードする</h2>
+    <p>無料です。JPEmu Renamer と合わせて使うと、ROMの名前を日本語のタイトルに一括で整えられます。</p>
+    <a class="btn fill" href="/#download">ダウンロード欄へ</a>
+    <a class="btn" href="/guide/rename-roms-with-dat.html">リネームの手順</a>
+  </section>
+</main>
+
+<footer>
+  <div class="fname">JPEmu Project</div>
+  <div><a href="/">ホーム</a> ／ <a href="/guide/">ガイド</a> ／ <a href="https://github.com/jpemu-project/JPEmu-Renamer">GitHub</a></div>
+  <div>このサイトではROMファイルやBIOSを配布していません。ゲーム名・商標は各権利者に帰属します。</div>
+  <div>© 2026 JPEmu Project</div>
+</footer>
+</body>
+</html>

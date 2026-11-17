@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>How to Rename ROMs Correctly with a DAT File (CRC32 Matching) | JPEmu Renamer</title>
+<meta name="description" content="Rename messy ROM file names to the correct game titles in one go by matching their contents (CRC32) against a DAT file. A step-by-step guide for JPEmu Renamer, a free Windows emulator launcher. Preview first, undo any time.">
+<link rel="canonical" href="https://jpemu-project.github.io/en/guide/rename-roms-with-dat.html">
+<link rel="alternate" hreflang="ja" href="https://jpemu-project.github.io/guide/rename-roms-with-dat.html">
+<link rel="alternate" hreflang="en" href="https://jpemu-project.github.io/en/guide/rename-roms-with-dat.html">
+<link rel="alternate" hreflang="x-default" href="https://jpemu-project.github.io/en/guide/rename-roms-with-dat.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="JPEmu Renamer">
+<meta property="og:title" content="How to Rename ROMs Correctly with a DAT File (CRC32 Matching)">
+<meta property="og:description" content="Rename messy ROM file names to the correct game titles in one go by matching their contents (CRC32) against a DAT file.">
+<meta property="og:url" content="https://jpemu-project.github.io/en/guide/rename-roms-with-dat.html">
+<meta property="og:image" content="https://jpemu-project.github.io/img/rename.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="stylesheet" href="/guide/guide.css">
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="/">JPEmu<small>RENAMER</small></a>
+  <nav>
+    <a href="/en/guide/">GUIDE</a>
+    <a class="hide-s" href="/guide/rename-roms-with-dat.html" hreflang="ja" lang="ja">日本語</a>
+    <a class="dl" href="/#download">DOWNLOAD</a>
+  </nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/">Home</a> / <a href="/en/guide/">Guide</a></p>
+  <p class="eyebrow">GUIDE</p>
+  <h1>How to Rename ROMs Correctly with a DAT File</h1>
+  <p class="lead">Rename ROMs with messy file names to the correct titles in one go, by matching their contents (CRC32) against a DAT file. You can review everything before it runs, and undo it afterwards.</p>
+
+  <h2>What are a DAT and CRC32?</h2>
+  <p>A <strong>DAT</strong> is a list (an XML file) of game titles and their <strong>CRC32</strong> values. <strong>CRC32</strong> is a fingerprint-like value calculated from the contents of a file.</p>
+  <p>JPEmu Renamer calculates the CRC32 of each ROM and compares it with the values in the DAT. No matter how messy the file name is, <strong>if the contents are the same, the title is recognized correctly</strong>. Only files that match are renamed to the name written in the DAT.</p>
+
+  <h2>What you need</h2>
+  <ul>
+    <li><strong>JPEmu Renamer</strong> (free, Windows 10 / 11 64-bit, no installation). <a href="/#download">Download it here</a></li>
+    <li><strong>ROMs</strong> that you dumped yourself</li>
+    <li>A <strong>DAT file</strong> for each system (OfflineList-format XML). Older Shift-JIS DATs are supported too. DATs with Japanese titles for games released in Japan are <a href="/en/guide/japanese-dat.html">available for free here</a></li>
+  </ul>
+  <p class="note">No ROM or BIOS files are distributed on this site.</p>
+
+  <h2>Steps</h2>
+  <ol class="steps">
+    <li><div><strong>Add a system</strong><span>Use "+ Add system" at the bottom left. If you choose a preset, the extensions, icon, color and built-in core are filled in for you.</span></div></li>
+    <li><div><strong>Set the DAT file and the ROM folder</strong><span>In "System settings", set the DAT file, the ROM folder (separate several with <code>;</code>) and the extensions to read (for example <code>.nes;.zip</code>). Once set, the ROMs are read and matched automatically. From the second time on, unchanged files are skipped, so it finishes quickly.</span></div></li>
+    <li><div><strong>Check the result on the Rename tab</strong><span>Switch to the "Rename" tab at the top. The current file name and the name in the DAT are shown side by side.</span></div></li>
+    <li><div><strong>Run the rename</strong><span>Look at the rows marked "Rename". Uncheck any row you do not want to rename. The right side shows "Before" and "After" for the selected row. When it looks right, press "Rename" at the bottom and choose "Yes" in the confirmation.</span></div></li>
+    <li><div><strong>Undo if you change your mind</strong><span>"Undo" on the Rename tab reverts the last run completely. Press it again to revert the run before that (up to the last 50 runs).</span></div></li>
+  </ol>
+
+  <figure>
+    <a href="/img/rename.jpg" target="_blank" rel="noopener"><img src="/img/rename.jpg" width="1280" height="800" loading="lazy" alt="The Rename screen of JPEmu Renamer, showing file names before and after renaming side by side"></a>
+    <figcaption>The Rename screen. Review the before and after, then run.</figcaption>
+  </figure>
+
+  <h2>What the statuses mean</h2>
+  <table>
+    <tr><th>Status</th><th>Meaning</th><th>Renamed?</th></tr>
+    <tr><td>Match</td><td>The CRC32 matches and the name is already the same as the DAT.</td><td>No need</td></tr>
+    <tr><td>Rename</td><td>The CRC32 matches but the name differs from the DAT.</td><td>Yes</td></tr>
+    <tr><td>Duplicate</td><td>A file for the same title already exists.</td><td>No</td></tr>
+    <tr><td>Not in DAT</td><td>The CRC32 is not in the DAT.</td><td>No</td></tr>
+    <tr><td>Missing</td><td>It is in the DAT, but you do not have the file.</td><td>-</td></tr>
+  </table>
+  <p>Files marked "Duplicate" or "Not in DAT" can be moved to a folder you choose, to tidy things up. Filtering the list to "Missing" shows the titles you do not have yet.</p>
+
+  <h2>Good to know</h2>
+  <ul>
+    <li><strong>ROM names inside ZIP files can be renamed too.</strong> Turn on "Settings" → "Also rename the ROM inside ZIP files", and the ROM inside each ZIP is renamed along with the ZIP file itself.</li>
+    <li><strong>Characters Windows cannot use are replaced automatically.</strong> <code>\ / : * ? " &lt; &gt; |</code> become full-width look-alikes.</li>
+    <li><strong>If you would rather not change file names.</strong> For systems like arcade, where renaming a file can stop the emulator from working, there is a "Show DAT names only" option. Turn it on in "System settings" to keep the file names as they are and show the DAT names only in the list.</li>
+  </ul>
+
+  <h2>If something goes wrong</h2>
+  <table>
+    <tr><th>Problem</th><th>What to check</th></tr>
+    <tr><td>Zero matches</td><td>Check that the DAT is for the same system as the ROMs. Changing "Header handling" to "Include" or "Exclude" can make them match (for example iNES headers on Famicom / NES ROMs).</td></tr>
+    <tr><td>The DAT cannot be read</td><td>Check that it is an OfflineList-format (XML) DAT.</td></tr>
+    <tr><td>"Duplicate"</td><td>You have two or more ROMs for the same title. Move one of them to another folder.</td></tr>
+    <tr><td>Skipped with "(exists)"</td><td>A file with the new name already exists. Decide which one to keep, then tidy up by hand.</td></tr>
+  </table>
+
+  <section class="cta">
+    <h2>Try JPEmu Renamer</h2>
+    <p>Free and portable. Put the whole folder on a USB drive and take it with you.</p>
+    <a class="btn fill" href="/#download">DOWNLOAD</a>
+    <a class="btn" href="/en/guide/japanese-dat.html">Japanese DAT guide</a>
+  </section>
+</main>
+
+<footer>
+  <div class="fname">JPEmu Project</div>
+  <div><a href="/">Home</a> / <a href="/en/guide/">Guide</a> / <a href="https://github.com/jpemu-project/JPEmu-Renamer">GitHub</a></div>
+  <div>No ROM or BIOS files are distributed here. Game titles and trademarks belong to their owners.</div>
+  <div>© 2026 JPEmu Project</div>
+</footer>
+</body>
+</html>

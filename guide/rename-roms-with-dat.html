@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DATでROMのファイル名を正しく整える方法（CRC32照合）｜JPEmu Renamer</title>
+<meta name="description" content="ファイル名がバラバラのROMを、中身（CRC32）でDATと照合して、正しいタイトルの名前に一括で直す手順。無料のWindowsソフト JPEmu Renamer の使い方です。実行前に確認でき、「元に戻す」で戻せます。">
+<link rel="canonical" href="https://jpemu-project.github.io/guide/rename-roms-with-dat.html">
+<link rel="alternate" hreflang="ja" href="https://jpemu-project.github.io/guide/rename-roms-with-dat.html">
+<link rel="alternate" hreflang="en" href="https://jpemu-project.github.io/en/guide/rename-roms-with-dat.html">
+<link rel="alternate" hreflang="x-default" href="https://jpemu-project.github.io/en/guide/rename-roms-with-dat.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="JPEmu Renamer">
+<meta property="og:title" content="DATでROMのファイル名を正しく整える方法（CRC32照合）">
+<meta property="og:description" content="ファイル名がバラバラのROMを、中身（CRC32）でDATと照合して、正しいタイトルの名前に一括で直す手順。">
+<meta property="og:url" content="https://jpemu-project.github.io/guide/rename-roms-with-dat.html">
+<meta property="og:image" content="https://jpemu-project.github.io/img/rename.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="stylesheet" href="/guide/guide.css">
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="/">JPEmu<small>RENAMER</small></a>
+  <nav>
+    <a href="/guide/">ガイド</a>
+    <a class="hide-s" href="/en/guide/rename-roms-with-dat.html" hreflang="en" lang="en">English</a>
+    <a class="dl" href="/#download">ダウンロード</a>
+  </nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/">ホーム</a> ／ <a href="/guide/">ガイド</a></p>
+  <p class="eyebrow">GUIDE</p>
+  <h1>DATでROMのファイル名を正しく整える方法</h1>
+  <p class="lead">ファイル名がバラバラのROMを、中身（CRC32）でDATと照合して、正しいタイトルの名前に一括で直す手順です。実行する前に一覧で確認でき、実行したあとも「元に戻す」で戻せます。</p>
+
+  <h2>DATとCRC32とは</h2>
+  <p><strong>DAT</strong>は、ゲームのタイトルと<strong>CRC32</strong>を並べた一覧表（XMLファイル）です。<strong>CRC32</strong>は、ファイルの中身から計算する「指紋」のような値です。</p>
+  <p>JPEmu Renamer は、ROMの中身からCRC32を計算して、DATに載っているCRC32と照らし合わせます。ファイル名がどんなにバラバラでも、<strong>中身が同じなら正しいタイトルだと判定できます</strong>。一致したファイルだけを、DATに書かれた名前に変えます。</p>
+
+  <h2>用意するもの</h2>
+  <ul>
+    <li><strong>JPEmu Renamer</strong>（無料・Windows 10 / 11 64bit・インストール不要）。<a href="/#download">ダウンロードはこちら</a></li>
+    <li>ご自身で吸い出した<strong>ROM</strong></li>
+    <li>機種ごとの<strong>DATファイル</strong>（OfflineList形式のXML）。古いShift-JISのDATにも対応しています。日本で発売されたゲームの日本語DATは、<a href="/guide/japanese-dat.html">こちらで無料配布</a>しています</li>
+  </ul>
+  <p class="note">このサイトでは、ROMファイルやBIOSは配布していません。</p>
+
+  <h2>手順</h2>
+  <ol class="steps">
+    <li><div><strong>機種を追加する</strong><span>左下の「＋ 機種を追加」で機種を作ります。「候補から選ぶ」で機種を選ぶと、拡張子・アイコン・色・内蔵コアが自動で入ります。</span></div></li>
+    <li><div><strong>DATファイルとROMフォルダを指定する</strong><span>「機種の設定」で、DATファイルとROMフォルダ（複数あるときは <code>;</code> で区切る）、対象拡張子（例：<code>.nes;.zip</code>）を指定します。設定すると、ROMの読み込みと照合が自動で始まります。2回目からは、変わっていないファイルの計算を省くので、すぐ終わります。</span></div></li>
+    <li><div><strong>「リネーム」タブで結果を確認する</strong><span>上の「リネーム」タブに切り替えます。「現在のファイル名」と「→ DAT上の名前」が並んで表示されます。</span></div></li>
+    <li><div><strong>リネームを実行する</strong><span>「名前違い」の行を確認します。リネームしたくない行は、チェックを外します。右側に、選んだ行の「変更前」と「変更後」が出るので確かめて、「リネームを実行」を押し、確認で「はい」を選びます。</span></div></li>
+    <li><div><strong>まちがえたら元に戻す</strong><span>「リネーム」タブの「元に戻す」で、最後に実行した回を、まるごと元に戻せます。もう一度押すと、その前の回も戻せます（直近50回分まで）。</span></div></li>
+  </ol>
+
+  <figure>
+    <a href="/img/rename.jpg" target="_blank" rel="noopener"><img src="/img/rename.jpg" width="1280" height="800" loading="lazy" alt="JPEmu Renamer のリネーム画面。変更前と変更後のファイル名が並んで表示される"></a>
+    <figcaption>リネーム画面。変更前と変更後を確認してから実行できます。</figcaption>
+  </figure>
+
+  <h2>「状態」の見方</h2>
+  <table>
+    <tr><th>状態</th><th>意味</th><th>リネーム</th></tr>
+    <tr><td>一致</td><td>CRC32が一致し、名前もDATと同じです</td><td>不要</td></tr>
+    <tr><td>名前違い</td><td>CRC32が一致し、名前がDATと違います</td><td>対象</td></tr>
+    <tr><td>重複</td><td>同じタイトルのファイルが、すでにあります</td><td>しない</td></tr>
+    <tr><td>DATに無し</td><td>DATにCRC32が載っていません</td><td>しない</td></tr>
+    <tr><td>未所有</td><td>DATにあるのに、手元にファイルがありません</td><td>―</td></tr>
+  </table>
+  <p>「重複」と「DATに無し」のファイルは、指定したフォルダへ移動して、整理することもできます。一覧の上で「未所有のみ」に絞ると、まだ持っていないタイトルが分かります。</p>
+
+  <h2>知っておくと便利なこと</h2>
+  <ul>
+    <li><strong>ZIPの中のROM名も変えられます。</strong>「設定」→「ZIP内のROM名もリネームする」をオンにすると、ZIPファイルの名前と一緒に、中のROMの名前もDATの名前になります。</li>
+    <li><strong>Windowsで使えない文字は自動で置き換えます。</strong><code>\ / : * ? " &lt; &gt; |</code> は、同じ形の全角文字になります。</li>
+    <li><strong>ファイル名を変えたくないとき。</strong>アーケード系のように、名前を変えるとエミュレーターで動かなくなる機種向けに、「表示名だけDATの名前にする」設定があります。「機種の設定」でオンにすると、ファイル名はそのままで、一覧の表示だけDATの名前になります。</li>
+  </ul>
+
+  <h2>うまくいかないとき</h2>
+  <table>
+    <tr><th>症状</th><th>確認すること</th></tr>
+    <tr><td>照合が0件になる</td><td>DATの機種が、ROMと合っているか確認してください。「ヘッダーの扱い」を「ヘッダー込み」または「ヘッダー除外」に変えると、一致することがあります（ファミコンのiNESヘッダーなど）。</td></tr>
+    <tr><td>DATを読み込めない</td><td>OfflineList形式（XML）のDATか確認してください。</td></tr>
+    <tr><td>「重複」になる</td><td>同じタイトルのROMが2つ以上あります。片方を別のフォルダに移してください。</td></tr>
+    <tr><td>「（既存あり）」でスキップされた</td><td>リネーム後の名前のファイルが、すでにあります。どちらを残すか決めてから、手で整理してください。</td></tr>
+  </table>
+
+  <section class="cta">
+    <h2>JPEmu Renamer をためす</h2>
+    <p>無料・インストール不要。フォルダごとUSBメモリに入れて持ち運べます。</p>
+    <a class="btn fill" href="/#download">ダウンロード</a>
+    <a class="btn" href="/guide/japanese-dat.html">日本語DATの使い方</a>
+  </section>
+</main>
+
+<footer>
+  <div class="fname">JPEmu Project</div>
+  <div><a href="/">ホーム</a> ／ <a href="/guide/">ガイド</a> ／ <a href="https://github.com/jpemu-project/JPEmu-Renamer">GitHub</a></div>
+  <div>このサイトではROMファイルやBIOSを配布していません。ゲーム名・商標は各権利者に帰属します。</div>
+  <div>© 2026 JPEmu Project</div>
+</footer>
+</body>
+</html>
