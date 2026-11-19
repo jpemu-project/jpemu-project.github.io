@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>リリースノート｜JPEmu Renamer</title>
+<meta name="description" content="無料のWindows用エミュレーターランチャー JPEmu Renamer の変更点。バグ修正、UIの変更、対応機種の追加を、新しいバージョンから順に載せています。">
+<link rel="canonical" href="https://jpemu-project.github.io/releases/">
+<link rel="alternate" hreflang="ja" href="https://jpemu-project.github.io/releases/">
+<link rel="alternate" hreflang="en" href="https://jpemu-project.github.io/en/releases/">
+<link rel="alternate" hreflang="x-default" href="https://jpemu-project.github.io/en/releases/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JPEmu Renamer">
+<meta property="og:title" content="リリースノート｜JPEmu Renamer">
+<meta property="og:description" content="JPEmu Renamer の変更点（バグ修正・UIの変更・対応機種の追加）。">
+<meta property="og:url" content="https://jpemu-project.github.io/releases/">
+<meta property="og:image" content="https://jpemu-project.github.io/img/main.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="stylesheet" href="/guide/guide.css">
+<style>
+.ver{margin:72px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.ver:first-of-type{margin-top:40px}
+.ver h2{margin:0;padding:0;border:0}
+.ver h2 small{margin-left:10px;font:400 13px var(--f-body);letter-spacing:.04em;color:var(--sub)}
+.ver .sum{margin:8px 0 0;color:var(--sub)}
+.ver h3{margin:24px 0 0;font:500 11px var(--f-label);letter-spacing:.24em;color:var(--copper)}
+.ver h3 + ul{margin-top:8px}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="/">JPEmu<small>RENAMER</small></a>
+  <nav>
+    <a href="/guide/">ガイド</a>
+    <a class="hide-s" href="/en/releases/" hreflang="en" lang="en">English</a>
+    <a class="dl" href="/#download">ダウンロード</a>
+  </nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/">ホーム</a></p>
+  <p class="eyebrow">RELEASE NOTES</p>
+  <h1>リリースノート</h1>
+  <p class="lead">JPEmu Renamer の変更点です。新しいバージョンから順に載せています。最新版は、トップページの「ダウンロード」から入手できます。</p>
+
+  <section class="ver" id="v1-3-0">
+    <h2>1.3.0 <small>2026.11.19</small></h2>
+    <p class="sum">見た目を「ソフトUI」に一新しました。</p>
+    <h3>UIの変更</h3>
+    <ul>
+      <li>6つのテーマ（ライト・ダーク・アクア・メタル・ピンク・シック）すべてを、やわらかな影で部品が浮き上がる「ソフトUI」にしました。選んでいるものは、へこんで見えます。</li>
+      <li>ROMの情報を、へこんだカードの表示にしました。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-2-0">
+    <h2>1.2.0 <small>2026.11.17</small></h2>
+    <p class="sum">対応機種が 45 機種になりました。</p>
+    <h3>機種の追加</h3>
+    <ul>
+      <li>18機種を追加（全45機種）：サテラビュー、ポケモンミニ、キッズコンピュータ ピコ、PC-FX、スーパーカセットビジョン、3DO、アタリ 2600 / 5200 / 7800 / リンクス / ジャガー、コレコビジョン、インテレビジョン、ベクトレックス、オデッセイ²、チャンネルF、メガダック、スーパービジョン。</li>
+      <li>機種を選ぶと、内蔵コアが自動で候補に入ります。BIOS が必要な機種では、足りないファイル名を案内します。</li>
+    </ul>
+    <h3>機能の追加</h3>
+    <ul>
+      <li>No-Intro・Redump などの形式（clrmamepro 形式）のDAT（XML・テキスト）を、そのまま使えるようにしました。ZIPに入ったままでも読めます。名前の地域（Japan / USA など）から、国旗も表示します。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-5">
+    <h2>1.1.5 <small>2026.11.17</small></h2>
+    <h3>UIの変更</h3>
+    <ul>
+      <li>未所有が0本の機種（コンプリートした機種）は、左の機種一覧のアイコンの右上に、小さな王冠を表示します。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-4">
+    <h2>1.1.4 <small>2026.11.11</small></h2>
+    <h3>バグ修正</h3>
+    <ul>
+      <li>機種名の書き方が候補と少し違うと（全角・半角、空白の有無、「CD-ROM2」と「CD-ROM²」など）、内蔵コアやBIOSの案内が正しく出ないことがある問題を直しました。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-3">
+    <h2>1.1.3 <small>2026.11.09</small></h2>
+    <h3>UIの変更</h3>
+    <ul>
+      <li>左の機種一覧で、選んでいる機種を、濃い背景と左の印で分かりやすく表示します。</li>
+      <li>一覧の上に、選んでいる機種の名前と、所有／未所有の本数を表示します（ウィンドウが狭いときは表示しません）。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-2">
+    <h2>1.1.2 <small>2026.11.09</small></h2>
+    <p class="sum">バグ修正と高速化です。</p>
+    <h3>高速化</h3>
+    <ul>
+      <li>機種を開くときの待ち時間を短くしました（例：ニンテンドーDSは約8秒から約0.2秒に。2回目以降の起動）。</li>
+      <li>初めて開く機種でも、画面が止まらなくなりました。</li>
+    </ul>
+    <h3>バグ修正</h3>
+    <ul>
+      <li>読み込み中に別の機種を選ぶと、前の機種の本数が出ないままになる問題を直しました。</li>
+      <li>裏で読み込みが続いている機種を選んだとき、進み具合が表示されなかった問題を直しました。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-1">
+    <h2>1.1.1 <small>2026.11.08</small></h2>
+    <p class="sum">ポータブル版になりました。フォルダごとUSBメモリなどに入れて持ち運べます。</p>
+    <h3>変更</h3>
+    <ul>
+      <li>設定・コア・セーブ・スクリーンショットなどを、exe と同じフォルダの <code>data</code> に保存します。</li>
+      <li>exe のフォルダの中にあるROM・DAT・BIOSなどの場所は、相対パスで保存します。ドライブ文字が変わっても、そのまま使えます。</li>
+      <li>1.1.0 までの設定は、初めて起動したときに自動で引き継ぎます。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-0">
+    <h2>1.1.0 <small>2026.11.08</small></h2>
+    <p class="sum">UIの一部変更とバグ修正です。</p>
+    <h3>UIの変更</h3>
+    <ul>
+      <li>ヘッダーのタイトルとプレビュー画面のロゴを、筆記体に変更しました。</li>
+      <li>テレビ風のプレビュー画面を、約1.3倍に広げました。</li>
+      <li>一覧に「並び替え」ボタンを追加しました（発売日・タイトル・メーカー・ジャンル・価格・状態）。</li>
+      <li>絞り込みを「すべて／所有のみ／未所有のみ」の順にし、未所有の行にもタイトルを表示します。</li>
+      <li>起動時に、選んでいない機種の所有／未所有の数も表示します。</li>
+      <li>状態表示を「所有／リネーム／未所有」に変えました。</li>
+      <li>メーカー欄の幅を、ウィンドウに合わせて調整します。</li>
+    </ul>
+    <h3>機種の追加</h3>
+    <ul>
+      <li>ニンテンドー3DS、ニンテンドーDSiウェア、スーパー32X、PCエンジン スーパーグラフィックス。</li>
+    </ul>
+    <h3>バグ修正</h3>
+    <ul>
+      <li>リネーム画面の全選択チェックボックスが効かない問題を直しました。</li>
+      <li>重複ファイルが移動されずに残る問題を直しました。</li>
+      <li>起動時や機種の切り替え時に、選んでいないゲームのデモが流れる問題を直しました。</li>
+      <li>「拡張子を表示しない」をオフにしても、拡張子が表示されない問題を直しました。</li>
+      <li>ゲームを選ばずに開いたプレイ設定に、使えない「ゲーム」ボタンが出る問題を直しました。</li>
+      <li>BIOSが無いときに、足りないファイル名と置き場所を案内するようにしました。</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-0-0">
+    <h2>1.0.0 <small>2026.11.04</small></h2>
+    <p class="sum">最初の公開版です。</p>
+    <ul>
+      <li>No-Intro / OfflineList のDATをCRC32で照合してリネーム。実行ごとに履歴が残り、「元に戻す」で戻せます。</li>
+      <li>RetroArch と同じ libretro コアを内蔵。</li>
+      <li>テレビ風の自動プレビュー、国旗の表示、6テーマ・16言語に対応。</li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <h2>JPEmu Renamer をためす</h2>
+    <p>無料・インストール不要。Windows 10 / 11（64bit）で動きます。</p>
+    <a class="btn fill" href="/#download">ダウンロード</a>
+  </section>
+</main>
+
+<footer>
+  <div class="fname">JPEmu Project</div>
+  <div><a href="/">ホーム</a> ／ <a href="/guide/">ガイド</a> ／ <a href="/releases/">リリースノート</a> ／ <a href="/en/releases/" hreflang="en" lang="en">English</a></div>
+  <div>このサイトではROMファイルやBIOSを配布していません。ゲーム名・商標は各権利者に帰属します。</div>
+  <div>© 2026 JPEmu Project</div>
+</footer>
+</body>
+</html>

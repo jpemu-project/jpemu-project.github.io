@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Release notes | JPEmu Renamer</title>
+<meta name="description" content="What changed in JPEmu Renamer, a free emulator launcher for Windows: bug fixes, UI changes and new systems, newest version first.">
+<link rel="canonical" href="https://jpemu-project.github.io/en/releases/">
+<link rel="alternate" hreflang="ja" href="https://jpemu-project.github.io/releases/">
+<link rel="alternate" hreflang="en" href="https://jpemu-project.github.io/en/releases/">
+<link rel="alternate" hreflang="x-default" href="https://jpemu-project.github.io/en/releases/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JPEmu Renamer">
+<meta property="og:title" content="Release notes | JPEmu Renamer">
+<meta property="og:description" content="What changed in JPEmu Renamer: bug fixes, UI changes and new systems.">
+<meta property="og:url" content="https://jpemu-project.github.io/en/releases/">
+<meta property="og:image" content="https://jpemu-project.github.io/img/main.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="stylesheet" href="/guide/guide.css">
+<style>
+.ver{margin:72px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.ver:first-of-type{margin-top:40px}
+.ver h2{margin:0;padding:0;border:0}
+.ver h2 small{margin-left:10px;font:400 13px var(--f-body);letter-spacing:.04em;color:var(--sub)}
+.ver .sum{margin:8px 0 0;color:var(--sub)}
+.ver h3{margin:24px 0 0;font:500 11px var(--f-label);letter-spacing:.24em;color:var(--copper)}
+.ver h3 + ul{margin-top:8px}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="/">JPEmu<small>RENAMER</small></a>
+  <nav>
+    <a href="/en/guide/">Guide</a>
+    <a class="hide-s" href="/releases/" hreflang="ja" lang="ja">日本語</a>
+    <a class="dl" href="/#download">DOWNLOAD</a>
+  </nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/">Home</a></p>
+  <p class="eyebrow">RELEASE NOTES</p>
+  <h1>Release notes</h1>
+  <p class="lead">What changed in JPEmu Renamer, newest version first. The latest version is available from Download on the home page.</p>
+
+  <section class="ver" id="v1-3-0">
+    <h2>1.3.0 <small>2026.11.19</small></h2>
+    <p class="sum">A new look: the "soft UI".</p>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>All six themes (Light, Dark, Aqua, Metal, Pink, Chic) now use a soft UI where parts rise gently off the background with soft shadows, and the selected item looks pressed in.</li>
+      <li>ROM information is now shown on a recessed card.</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-2-0">
+    <h2>1.2.0 <small>2026.11.17</small></h2>
+    <p class="sum">Now 45 supported systems.</p>
+    <h3>NEW SYSTEMS</h3>
+    <ul>
+      <li>18 systems added (45 in total): Satellaview, Pokémon mini, Sega Pico, PC-FX, Super Cassette Vision, 3DO, Atari 2600 / 5200 / 7800 / Lynx / Jaguar, ColecoVision, Intellivision, Vectrex, Odyssey² / Videopac, Channel F, Mega Duck and Supervision.</li>
+      <li>Built-in cores are picked automatically when you choose a system. For systems that need a BIOS, the missing file names are shown.</li>
+    </ul>
+    <h3>NEW FEATURE</h3>
+    <ul>
+      <li>DATs in clrmamepro format, such as No-Intro and Redump (XML or text), now work as they are, even inside a ZIP. Region names like (Japan) and (USA) show as flags.</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-5">
+    <h2>1.1.5 <small>2026.11.17</small></h2>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>Systems with no missing games (complete sets) show a small crown at the top right of their icon in the left list.</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-4">
+    <h2>1.1.4 <small>2026.11.11</small></h2>
+    <h3>BUG FIXES</h3>
+    <ul>
+      <li>Fixed a problem where the right core and BIOS hints did not appear when a system name was written slightly differently from the presets (full-width characters, spaces, "CD-ROM2" vs "CD-ROM²", and so on).</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-3">
+    <h2>1.1.3 <small>2026.11.09</small></h2>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>The selected system in the left list now has a stronger background and an accent mark, so it is easier to see.</li>
+      <li>The selected system's name and its owned / missing counts appear above the list (hidden when the window is narrow).</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-2">
+    <h2>1.1.2 <small>2026.11.09</small></h2>
+    <p class="sum">Bug fixes and faster loading.</p>
+    <h3>FASTER</h3>
+    <ul>
+      <li>Opening a system is much faster (for example, Nintendo DS went from about 8 seconds to about 0.2 seconds, from the second launch on).</li>
+      <li>The window no longer freezes when you open a system for the first time.</li>
+    </ul>
+    <h3>BUG FIXES</h3>
+    <ul>
+      <li>Fixed counts staying blank in the left list when you switched systems while one was still loading.</li>
+      <li>Fixed loading progress not showing when you selected a system that was still loading in the background.</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-1">
+    <h2>1.1.1 <small>2026.11.08</small></h2>
+    <p class="sum">Now portable: carry the whole folder on a USB drive.</p>
+    <h3>CHANGES</h3>
+    <ul>
+      <li>Settings, cores, saves, screenshots and more are now kept in a <code>data</code> folder next to the exe.</li>
+      <li>Locations inside the app folder (ROMs, DATs, BIOS and so on) are stored as relative paths, so a changed drive letter does not matter.</li>
+      <li>Settings from 1.1.0 and earlier are carried over automatically on first launch.</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-1-0">
+    <h2>1.1.0 <small>2026.11.08</small></h2>
+    <p class="sum">UI updates and bug fixes.</p>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>Script-style title in the header and on the preview screen.</li>
+      <li>The TV-style preview is about 1.3 times larger.</li>
+      <li>New Sort button: release date, title, publisher, genre, price and status.</li>
+      <li>Filters are now All / Owned / Missing, and missing rows also show their titles.</li>
+      <li>Owned / missing counts for every system are shown at startup.</li>
+      <li>The status bar now reads Owned / To rename / Missing.</li>
+      <li>The publisher column adapts to the window width.</li>
+    </ul>
+    <h3>NEW SYSTEMS</h3>
+    <ul>
+      <li>Nintendo 3DS, Nintendo DSiWare, Super 32X and PC Engine SuperGrafx.</li>
+    </ul>
+    <h3>BUG FIXES</h3>
+    <ul>
+      <li>Fixed the select-all checkbox on the Rename tab not working.</li>
+      <li>Fixed duplicate files being left behind instead of moved.</li>
+      <li>Fixed demos playing for games you had not selected, at startup and when switching systems.</li>
+      <li>Fixed file extensions not showing after turning off "Hide file extensions".</li>
+      <li>Fixed a disabled "Game" button appearing in play settings opened without a game.</li>
+      <li>When a BIOS is missing, the file name and where to put it are now shown.</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="v1-0-0">
+    <h2>1.0.0 <small>2026.11.04</small></h2>
+    <p class="sum">The first public release.</p>
+    <ul>
+      <li>Rename with No-Intro / OfflineList DATs matched by CRC32. Every run is logged and can be undone.</li>
+      <li>Built-in libretro cores, the same as RetroArch.</li>
+      <li>TV-style auto preview, region flags, 6 themes and 16 languages.</li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <h2>Try JPEmu Renamer</h2>
+    <p>Free, no install needed. Runs on Windows 10 / 11 (64-bit).</p>
+    <a class="btn fill" href="/#download">DOWNLOAD</a>
+  </section>
+</main>
+
+<footer>
+  <div class="fname">JPEmu Project</div>
+  <div><a href="/">Home</a> / <a href="/en/guide/">Guide</a> / <a href="/en/releases/">Release notes</a> / <a href="/releases/" hreflang="ja" lang="ja">日本語</a></div>
+  <div>No ROM or BIOS files are distributed here. Game titles and trademarks belong to their owners.</div>
+  <div>© 2026 JPEmu Project</div>
+</footer>
+</body>
+</html>
