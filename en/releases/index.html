@@ -20,6 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/img/app-icon-256.png">
 <link rel="stylesheet" href="/guide/guide.css">
 <style>
 .ver{margin:72px 0 0;padding-top:28px;border-top:1px solid var(--line)}
@@ -46,6 +48,30 @@
   <p class="eyebrow">RELEASE NOTES</p>
   <h1>Release notes</h1>
   <p class="lead">What changed in JPEmu Renamer, newest version first. The latest version is available from Download on the home page.</p>
+
+  <section class="ver" id="v1-5-0">
+    <h2>1.5.0 <small>2026.11.21</small></h2>
+    <p class="sum">Now 105 supported systems, and a new app icon.</p>
+    <h3>NEW SYSTEMS</h3>
+    <ul>
+      <li>50 systems added (105 in total): 3D systems such as PlayStation 2, GameCube, Wii, Dreamcast, PSP and NUON; consoles and handhelds such as Neo Geo CD, 64DD, CD-i, Amiga CD32, Tamagotchi, Game &amp; Watch, PICO-8 and CHIP-8; and computers such as FM Towns, Atari ST, Macintosh, MS-DOS, Apple II and BBC Micro.</li>
+      <li>The 3D systems need graphics that support OpenGL 3.3 or later. The parts used by the PSP, GameCube, Wii and PS2 cores are downloaded automatically the first time you launch them.</li>
+    </ul>
+    <h3>NEW FEATURES</h3>
+    <ul>
+      <li>Mouse support. On Amiga, X68000, PC-9801, FM Towns, Atari ST, Macintosh and MS-DOS, click the game screen to use the mouse in the game.</li>
+      <li>The official libretro core information is now built in, so BIOS hints are more accurate and even systems you create yourself get a core that matches the file extension.</li>
+    </ul>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>A new app icon: a white handheld console. The same icon appears in the title bar.</li>
+    </ul>
+    <h3>BUG FIXES</h3>
+    <ul>
+      <li>Fixed the hints about where to put the BIOS for FM Towns and CD-i.</li>
+      <li>For systems that need a BIOS, the missing files are now shown before launching.</li>
+    </ul>
+  </section>
 
   <section class="ver" id="v1-4-0">
     <h2>1.4.0 <small>2026.11.20</small></h2>

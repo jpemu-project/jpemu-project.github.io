@@ -20,6 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/img/app-icon-256.png">
 <link rel="stylesheet" href="/guide/guide.css">
 <style>
 .ver{margin:72px 0 0;padding-top:28px;border-top:1px solid var(--line)}
@@ -46,6 +48,30 @@
   <p class="eyebrow">RELEASE NOTES</p>
   <h1>リリースノート</h1>
   <p class="lead">JPEmu Renamer の変更点です。新しいバージョンから順に載せています。最新版は、トップページの「ダウンロード」から入手できます。</p>
+
+  <section class="ver" id="v1-5-0">
+    <h2>1.5.0 <small>2026.11.21</small></h2>
+    <p class="sum">対応機種が 105 機種になりました。アイコンも新しくなりました。</p>
+    <h3>機種の追加</h3>
+    <ul>
+      <li>50機種を追加（全105機種）。プレイステーション2、ゲームキューブ、Wii、ドリームキャスト、PSP、NUON などの3Dの機種のほか、ネオジオCD、64DD、CD-i、Amiga CD32、たまごっち、ゲーム&amp;ウオッチ、PICO-8、CHIP-8 などのゲーム機・携帯機、FM TOWNS、Atari ST、マッキントッシュ、MS-DOS、Apple II、BBC Micro などのパソコンです。</li>
+      <li>3Dの機種を遊ぶには、OpenGL 3.3 以上に対応したグラフィックスが必要です。PSP・ゲームキューブ・Wii・PS2 のコアが使う部品は、初めて起動するときに自動でダウンロードします。</li>
+    </ul>
+    <h3>機能の追加</h3>
+    <ul>
+      <li>マウスに対応しました。Amiga・X68000・PC-9801・FM TOWNS・Atari ST・マッキントッシュ・MS-DOS では、ゲーム画面をクリックすると、マウスをゲームで使えます。</li>
+      <li>libretro 公式のコアの情報を取り込みました。BIOS の説明が正確になり、自分で作った機種でも、拡張子に合うコアを選べます。</li>
+    </ul>
+    <h3>UIの変更</h3>
+    <ul>
+      <li>アプリのアイコンを、白い携帯ゲーム機の新しいものにしました。タイトルバーにも、同じアイコンが出ます。</li>
+    </ul>
+    <h3>バグ修正</h3>
+    <ul>
+      <li>FM TOWNS と CD-i の、BIOS の置き場所の説明を直しました。</li>
+      <li>必要な BIOS が無い機種では、起動する前に、足りないファイルを知らせるようにしました。</li>
+    </ul>
+  </section>
 
   <section class="ver" id="v1-4-0">
     <h2>1.4.0 <small>2026.11.20</small></h2>
