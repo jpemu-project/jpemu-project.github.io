@@ -49,6 +49,25 @@
   <h1>Release notes</h1>
   <p class="lead">What changed in JPEmu Renamer, newest version first. The latest version is available from Download on the home page.</p>
 
+  <section class="ver" id="v1-5-1">
+    <h2>1.5.1 <small>2026.11.22</small></h2>
+    <p class="sum">A bug-fix release for carrying the app folder around, for example on a USB drive.</p>
+    <h3>BUG FIXES</h3>
+    <ul>
+      <li>Fixed undo discarding the records of files it could not revert. They are now kept for a later retry, and they no longer block undoing other runs.</li>
+      <li>Fixed saved folder locations sometimes being rewritten to another drive when an external drive was disconnected at startup.</li>
+      <li>Fixed every ROM being read again after moving the app folder or when the USB drive letter changed.</li>
+      <li>Rename records for files inside the app folder are now portable, so undo still works after moving the folder.</li>
+      <li>Fixed typed relative paths sometimes pointing to the wrong place until restart.</li>
+      <li>Fixed folders whose names start with ".." (such as <code>..roms</code>) being treated as outside the app folder.</li>
+      <li>Fixed a damaged rename history being overwritten without a backup (a copy is now saved as <code>history.json.broken</code>).</li>
+    </ul>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>A mark (✓ / △) under the location fields shows whether the folder can be carried along with the app.</li>
+    </ul>
+  </section>
+
   <section class="ver" id="v1-5-0">
     <h2>1.5.0 <small>2026.11.21</small></h2>
     <p class="sum">Now 105 supported systems, and a new app icon.</p>
