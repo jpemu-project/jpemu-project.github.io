@@ -329,6 +329,21 @@ var JPEMU_I18N = {
 "Any amount": {zs:"金额随意", zt:"金額不限", ko:"금액 자유", fr:"Montant libre", it:"Importo libero", es:"Cantidad libre", pt:"Valor livre", ru:"Любая сумма", de:"Beliebiger Betrag", pl:"Dowolna kwota", tr:"İstediğiniz tutar", id:"Jumlah bebas", vi:"Số tiền tùy ý", th:"จำนวนเท่าใดก็ได้"},
 "(COMING SOON)": {zs:"(准备中)", zt:"(準備中)", ko:"(준비 중)", fr:"(BIENTÔT)", it:"(IN ARRIVO)", es:"(PRÓXIMAMENTE)", pt:"(EM BREVE)", ru:"(СКОРО)", de:"(DEMNÄCHST)", pl:"(WKRÓTCE)", tr:"(YAKINDA)", id:"(SEGERA)", vi:"(SẮP CÓ)", th:"(เร็ว ๆ นี้)"},
 
+"This site counts visits in a way that does not identify individuals (Cloudflare Web Analytics, no cookies).": {
+  zs:"本站以不识别个人身份的方式统计访问量（Cloudflare Web Analytics，不使用 Cookie）。",
+  zt:"本站以不識別個人身分的方式統計訪問量（Cloudflare Web Analytics，不使用 Cookie）。",
+  ko:"이 사이트는 개인을 식별할 수 없는 방식으로 방문 수를 집계합니다(Cloudflare Web Analytics, 쿠키 미사용).",
+  fr:"Ce site compte les visites sans identifier les personnes (Cloudflare Web Analytics, sans cookies).",
+  it:"Questo sito conta le visite senza identificare le persone (Cloudflare Web Analytics, senza cookie).",
+  es:"Este sitio cuenta las visitas sin identificar a las personas (Cloudflare Web Analytics, sin cookies).",
+  pt:"Este site conta as visitas sem identificar as pessoas (Cloudflare Web Analytics, sem cookies).",
+  ru:"Этот сайт считает посещения без идентификации людей (Cloudflare Web Analytics, без cookie).",
+  de:"Diese Seite zählt Besuche, ohne einzelne Personen zu identifizieren (Cloudflare Web Analytics, ohne Cookies).",
+  pl:"Ta strona liczy odwiedziny bez identyfikowania osób (Cloudflare Web Analytics, bez plików cookie).",
+  tr:"Bu site, kişileri tanımlamadan ziyaret sayısını sayar (Cloudflare Web Analytics, çerezsiz).",
+  id:"Situs ini menghitung kunjungan tanpa mengidentifikasi individu (Cloudflare Web Analytics, tanpa cookie).",
+  vi:"Trang này đếm lượt truy cập mà không nhận dạng cá nhân (Cloudflare Web Analytics, không dùng cookie).",
+  th:"เว็บไซต์นี้นับจำนวนผู้เข้าชมโดยไม่ระบุตัวบุคคล (Cloudflare Web Analytics ไม่ใช้คุกกี้)"},
 "Feel free to link to this site.": {zs:"本站欢迎自由链接。", zt:"本站歡迎自由連結。", ko:"이 사이트는 자유롭게 링크하셔도 됩니다.", fr:"Vous pouvez librement faire un lien vers ce site.", it:"Puoi inserire liberamente link a questo sito.", es:"Puedes enlazar libremente a este sitio.", pt:"Fique à vontade para criar links para este site.", ru:"Ссылаться на этот сайт можно свободно.", de:"Verlinkungen auf diese Seite sind willkommen.", pl:"Możesz swobodnie linkować do tej strony.", tr:"Bu siteye serbestçe bağlantı verebilirsiniz.", id:"Silakan menautkan ke situs ini.", vi:"Bạn có thể tự do liên kết đến trang này.", th:"ลิงก์มายังเว็บไซต์นี้ได้อย่างอิสระ"},
 "No ROM or BIOS files are distributed here. Game titles and trademarks belong to their owners.": {
   zs:"本站不分发 ROM 文件或 BIOS。游戏名称和商标归各自的权利人所有。",
