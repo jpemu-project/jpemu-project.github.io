@@ -50,6 +50,34 @@
   <h1>リリースノート</h1>
   <p class="lead">JPEmu Renamer の変更点です。新しいバージョンから順に載せています。最新版は、トップページの「ダウンロード」から入手できます。</p>
 
+  <section class="ver" id="v1-7-0">
+    <h2>1.7.0 <small>2026.11.25</small></h2>
+    <p class="sum">アーケードに対応し、対応機種が 134 機種になりました。BIOS の置き方も分かりやすくなりました。</p>
+    <h3>機種の追加</h3>
+    <ul>
+      <li>134機種になりました（29機種を追加）。アーケード（FinalBurn Neo）、CPS1・CPS2・CPS3、NAOMI・NAOMI 2・アトミスウェイブ（Flycast）、Model 3（Supermodel）。アーケードは ROM セットの ZIP の名前でDATと照合し、ファイル名は変えずに、DATのゲーム名で一覧に表示します。</li>
+      <li>ビデオパック+、CDTV、Atari STE、Atari TT、スーパーゲームボーイ、TI-83、VC 4000、TV-Computer、CBM-500、GameTank、Galaksija、IBM PC/XT、Z-Machine（Infocom）、Java の携帯ゲーム（J2ME）、レーザーディスク、Dingoo A320。</li>
+      <li>プレイステーション3、PS Vita、Xbox、Xbox 360、Wii U。内蔵のコアが無いので、外部のエミュレーターで起動します（候補を選ぶと、起動方法と引数が自動で入ります）。</li>
+      <li>新しい機種の多くは、まだ実際のソフトで試していません。</li>
+    </ul>
+    <h3>機能の追加</h3>
+    <ul>
+      <li>BIOS は、exe と同じフォルダの <code>bios</code> に入れるだけになりました（自動で作られます。サブフォルダは不要です）。これまでの場所（<code>data\system</code>）にあった BIOS は、自動で移します。</li>
+      <li>「機種の設定」に、必要な BIOS の一覧と、あるかどうか（✓ / ✗）、置き方の説明、「BIOS フォルダを開く」ボタンを足しました。</li>
+      <li>名前が違う BIOS も、中身で見分けて使います。名前は合っていても、中身が知られている版と違うときは、⚠ で知らせます。</li>
+    </ul>
+    <h3>UIの変更</h3>
+    <ul>
+      <li>機種の候補を、メーカーと、関連する機種の順に並べ替えました（64DD は NINTENDO64 の隣、など）。</li>
+    </ul>
+    <h3>バグ修正</h3>
+    <ul>
+      <li>64DD のゲームが起動できない問題を直しました（コアを ParaLLEl N64 に変更）。</li>
+      <li>BIOS が無いのに案内が出なかった機種（64DD、Atari ST・STE・TT・Falcon、CDTV、PC-8801、FM TOWNS、ネオジオCD、Palm OS、コレコ アダム、MSX など）で、足りないファイルを知らせるようにしました。</li>
+      <li>Atari Falcon が ST として動いていた問題を直しました。CDTV、CD32、STE・TT、スーパーゲームボーイも、それぞれの機種として動きます。</li>
+    </ul>
+  </section>
+
   <section class="ver" id="v1-6-0">
     <h2>1.6.0 <small>2026.11.24</small></h2>
     <p class="sum">左の機種一覧のアイコンを、全105機種ぶん新しく描き起こしました。</p>

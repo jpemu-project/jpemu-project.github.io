@@ -50,6 +50,34 @@
   <h1>Release notes</h1>
   <p class="lead">What changed in JPEmu Renamer, newest version first. The latest version is available from Download on the home page.</p>
 
+  <section class="ver" id="v1-7-0">
+    <h2>1.7.0 <small>2026.11.25</small></h2>
+    <p class="sum">Arcade support and 134 systems in total. BIOS files are now much easier to set up.</p>
+    <h3>NEW SYSTEMS</h3>
+    <ul>
+      <li>134 systems in total (29 added). Arcade (FinalBurn Neo), CPS1 / CPS2 / CPS3, NAOMI / NAOMI 2 / Atomiswave (Flycast) and Model 3 (Supermodel). Arcade sets are matched by their ZIP set names; file names are left as they are and the list shows the game names from the DAT.</li>
+      <li>Videopac+, CDTV, Atari STE, Atari TT, Super Game Boy, TI-83, VC 4000, TV-Computer, CBM-500, GameTank, Galaksija, IBM PC/XT, Z-Machine (Infocom), Java ME (J2ME), Laserdisc and Dingoo A320.</li>
+      <li>PlayStation 3, PS Vita, Xbox, Xbox 360 and Wii U. They have no built-in core, so they start with an external emulator (picking the preset fills in the launch mode and arguments).</li>
+      <li>Many of the new systems have not been tried with real software yet.</li>
+    </ul>
+    <h3>NEW FEATURES</h3>
+    <ul>
+      <li>Just put BIOS files in the <code>bios</code> folder next to the exe (it is created automatically, and no subfolders are needed). BIOS files in the old place (<code>data\system</code>) are moved there automatically.</li>
+      <li>System settings now lists the BIOS files the system needs, whether each one is found (✓ / ✗), how to place them, and an "Open BIOS folder" button.</li>
+      <li>BIOS files with different names are recognised by their contents. A ⚠ mark shows when a file has the right name but contents that differ from every known version.</li>
+    </ul>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>The list of system presets is now ordered by maker and related systems (for example, 64DD sits next to Nintendo 64).</li>
+    </ul>
+    <h3>BUG FIXES</h3>
+    <ul>
+      <li>Fixed 64DD games not starting (the core is now ParaLLEl N64).</li>
+      <li>For systems that need a BIOS but showed no hint (64DD, Atari ST / STE / TT / Falcon, CDTV, PC-8801, FM Towns, Neo Geo CD, Palm OS, Coleco ADAM, MSX and more), the missing files are now shown.</li>
+      <li>Fixed Atari Falcon running as an ST. CDTV, CD32, STE / TT and Super Game Boy now run as their own systems too.</li>
+    </ul>
+  </section>
+
   <section class="ver" id="v1-6-0">
     <h2>1.6.0 <small>2026.11.24</small></h2>
     <p class="sum">The system icons in the left list have been redrawn for all 105 systems.</p>
