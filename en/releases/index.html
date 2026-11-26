@@ -50,6 +50,19 @@
   <h1>Release notes</h1>
   <p class="lead">What changed in JPEmu Renamer, newest version first. The latest version is available from Download on the home page.</p>
 
+  <section class="ver" id="v1-8-0">
+    <h2>1.8.0 <small>2026.11.26</small></h2>
+    <p class="sum">The TV can now show box art, title screens and in-game screenshots.</p>
+    <h3>UI CHANGES</h3>
+    <ul>
+      <li>Added "Preview", "Box art", "Title" and "In-game" buttons under the TV (in the theme color). Your choice is kept when you switch systems or restart the app. The TV keeps its size.</li>
+      <li>Images come from the libretro thumbnail collection (libretro-thumbnails, the same one RetroArch uses), looked up by the ROM's CRC. This works with Japanese DAT names too, and also for games you do not own. Arcade games are looked up by their DAT game names.</li>
+      <li>Downloaded images are saved in <code>thumbnails</code> in the settings folder and shown offline after that. The first image for a system takes a little longer.</li>
+      <li>Added "Download images for owned ROMs" to Settings. It downloads images for the ROMs you own in all your systems (choose the kinds; existing images are skipped; you can stop at any time).</li>
+      <li>The images are not included in the app; they are downloaded when you choose to show them. The images belong to the respective rights holders of each game.</li>
+    </ul>
+  </section>
+
   <section class="ver" id="v1-7-0">
     <h2>1.7.0 <small>2026.11.25</small></h2>
     <p class="sum">Arcade support and 134 systems in total. BIOS files are now much easier to set up.</p>
